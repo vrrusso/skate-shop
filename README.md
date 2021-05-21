@@ -2,6 +2,6 @@
 ## Project Report
 ### Group 26
 
-- Caio Vianna
+- Caio Chaves
 - Guilherme Amaral Hiromoto
 - Victor Rodrigues Russo 11218855

@@ -1,14 +1,24 @@
 
+
+body{
+    background-image: url("img/bgimage.jpg") ;
+    background-size:100%;
+}
+
+
 /*changes the header background color*/
 .navbar-custom{
     background-color:#000;
 }
 
 
+.navbar-custom .navbar-brand{
+    color:#BA0303;
+}
+
 /*changes the color of the links in the header*/
 .navbar-custom .nav-link{
     color:#7C7C7C;
-    
 }
 
 
@@ -125,21 +135,27 @@
 .profile-canvas{
     margin:auto;
     margin-top:50px;
-    height:700px;
+    height:500px;
     width:1100px;
-    background-color:green;
+    padding-top: 25px;
+    padding-left:25px;
+    background-color:white;
+    border:5px;
+    border-style: solid;
+    border-color: #BA0303;
+    box-shadow: 2px 2px 5px red;
 }
 .profile-infos{
-    height:700px;
+    height:100%;
     width:560px;
-    background-color:blueviolet;
+    /*background-color:white;*/
     float:left;
 }
 
 .profile-img{
-    height:700px;
+    height:100%;
     width:500px;
-    background-color:yellow;
+    /*background-color:yellow;*/
     float:left;
 }
 
@@ -162,6 +178,18 @@
     height:50px;
     margin-top:50px;
 }
+
+.central-link-white{
+    color:#BA0303;
+    margin-left:10px
+}
+
+.central-link-white:hover{
+    color:#FF7700;
+}
+
+
+
 
 
 

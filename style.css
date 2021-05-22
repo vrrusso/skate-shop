@@ -189,7 +189,19 @@ body{
 }
 
 
+.form-container{
+    /*background-color:chartreuse;*/
+    padding-top: 10px;
+    height:370px;
+    width:400px;
+}
 
+.form-container-right{
+    /*background-color:cornflowerblue;*/
+    width:35%;
+    padding-top: 5px;
+    float:left;
+}
 
 
 

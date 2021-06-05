@@ -25,16 +25,16 @@
                     <a class="nav-link"   aria-current="page" href="index.html">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link active" style="color:#BA0303" href="products.html">Skates Completos</a>
+                    <a class="nav-link" href="products.html">Skates Completos</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link active" style="color:#BA0303" href="products.html">Shapes</a>
+                    <a class="nav-link" href="products.html">Shapes</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link active" style="color:#BA0303" href="products.html">Trucks</a>
+                    <a class="nav-link" href="products.html">Trucks</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link active" style="color:#BA0303" href="products.html">Rodas e Rolamentos</a>
+                    <a class="nav-link" href="products.html">Rodas e Rolamentos</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="about.html">Sobre</a>
@@ -43,7 +43,7 @@
 
                 <ul class="navbar-nav me-auto mb-2 mb-md-0 ">
                     <li class="nav-item">
-                      <a class="nav-link" id="profile-link" aria-current="page" href="user.html">Perfil</a>
+                      <a class="nav-link active" id="profile-link" aria-current="page" href="user.html" style="color:#BA0303">Login</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="cart-link" aria-current="page" href="cart.html">Carrinho</a>
@@ -63,24 +63,37 @@
             <div class="container-feed">
                     <div class="profile-canvas">
                         <div class="profile-infos">
-                            <h3 class="central-text-title" style="color:#642d01">Shape Creature</h3>
-                            <ul>
-                                <li>Marca: Creature</li>
-                                <li>Tamanho(polegadas):8.0</li>
-                                <li>Material: Marfin</li>
-                                <li>Cor: Verde</li>
-                                <li><p>Pequena descrição textual</p></li>
-                                
-                            </ul>
-                            <span class="price-tag">$20</span>
-                            <form action="cart.html">
-                                Quantidade:<input value="1" type="number"><br>
-                                <button class="btn search" style="margin-top: 5px;">Adcionar ao Carrinho</button>
+                          <div class="form-container">
+                            <form action="index.html" class="form-user">
+                              <div class="form-container-right">Email:</div><div class="form-container-right"><input type="text"></div>
+                              <div class="form-container-right">Senha:</div><div class="form-container-right"><input type="password"></div>
+                              <div class="form-container-right"><button class="btn search">Login</button></div><div class="form-container-right"></div>
+                              <div class="form-container-right"><a href="index.html" class="central-link">Recuperar Senha</a></div>
                             </form>
+
+                          </div>
+                           
                         </div>
                         <div class="profile-img">
-                            <img src="img/shape.jpg" width="400">
-                            
+                          <form action="index.html" class="form-user">
+                          <div class="form-container">
+                              <div class="form-container-right">Nome:</div><div class="form-container-right"><input type="text"></div>
+                              <div class="form-container-right">Email:</div><div class="form-container-right"><input type="text"></div>
+                              <div class="form-container-right">Telefone:</div><div class="form-container-right"><input  type="tel"></div>
+                              <div class="form-container-right">Nascimento:</div><div class="form-container-right"><input type="date"></div>
+                              <div class="form-container-right">CPF:</div><div class="form-container-right"><input type="text"></div>
+                              <div class="form-container-right">Endereço:</div><div class="form-container-right"><input type="text"></div>
+                              <div class="form-container-right">CEP:</div><div class="form-container-right"><input type="text"></div>
+                              <div class="form-container-right">Cidade:</div><div class="form-container-right"><input type="text"></div>
+                              <div class="form-container-right">Estado:</div><div class="form-container-right"><input type="text"></div>
+                              <div class="form-container-right">Base:</div><div class="form-container-right"><select><option value="regular">Regular</option><option value="goofy" selected="selected">Goofy</option></select></div>
+                              <div class="form-container-right">Senha:</div><div class="form-container-right"><input type="password"></div>
+                              <div class="form-container-right">Repetir Senha:</div><div class="form-container-right"><input type="password"></div>
+                              <div class="form-container-right"><button class="btn search">Registrar</button></div>
+
+                          </ul>
+                          </div>
+                          </form>
                         </div>
                     </div>         
             </div>

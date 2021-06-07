@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', checkUser )
 function checkUser( ){
 
 
-    let user = 1
+    let user = -1
 
     let profile_link = document.getElementById("profile-link")
     let cart_link = document.getElementById("cart-link")

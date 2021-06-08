@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+    <head>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8">
+        <meta name="author" content="co-authored by Caio Viana,Guilherme Hiromoto, Victor Russo">
+
+        <!-- Bootstrap CSS-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+        <link rel="stylesheet" href="style.css">
+        <title>Skate Shop</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-md fixed-top navbar-custom">
+            <div class="container-fluid">
+              <a class="navbar-brand"  href="index.html">SK8</a><!--Colocar um logo pequeno-->
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" style="background-color: #BA0303;" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                  <li class="nav-item">
+                    <a class="nav-link"   aria-current="page" href="index.html">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="products.html">Skates Completos</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="products.html">Shapes</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="products.html">Trucks</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="products.html">Rodas e Rolamentos</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="about.html">Sobre</a>
+                  </li>
+                </ul>
+
+                <ul class="navbar-nav me-auto mb-2 mb-md-0 ">
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="user.html" style="color:#BA0303">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="cart.html">Carrinho</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="shape_drawer.html">Shape Drawer</a>
+                    </li>
+                  </ul>
+                <form class="d-flex" action="products.html">
+                  <input class="form-control me-2" type="search" placeholder="Procure por peças iradas" aria-label="Search">
+                  <button class="btn search">Search</button>
+                </form>
+              </div>
+            </div>
+          </nav>
+          <main class="container">
+            <div class="container-feed">
+                    <div class="profile-canvas">
+                        <div class="profile-infos">
+                          <div class="form-container">
+                            <form id="login" class="form-user">
+                              <div class="form-container-right">Email:</div><div class="form-container-right"><input type="text" id="login-mail"></div>
+                              <div class="form-container-right">Senha:</div><div class="form-container-right"><input type="password" id="login-password"></div>
+                              <div class="form-container-right"><input type="submit" value="Submit Form"></div>
+                              <div class="form-container-right"><a href="index.html" class="central-link">Recuperar Senha</a></div>
+                            </form>
+
+                            <script>
+                              const loginForm = document.getElementById('login')
+                              loginForm.addEventListener('submit', login)
+
+                              async function login(event) {
+                                event.preventDefault()
+                                const mail = document.getElementById('login-mail').value
+                                const password = document.getElementById('login-password').value
+
+                                const loginResult = await fetch('/api/login', {
+                                  method: 'POST',
+                                  headers: {
+                                    'Content-Type': 'application/json'
+                                  },
+                                  body: JSON.stringify({
+                                    mail,
+                                    password
+                                  })
+                                }).then((res) => res.json())
+
+                                if (loginResult.status === 'ok') {
+                                  // everythign went fine
+                                  console.log('Got the token: ', loginResult.data)
+                                  localStorage.setItem('token', loginResult.data)
+                                  alert('Success')
+                                } else {
+                                  alert(loginResult.error)
+                                }
+                              }
+                            </script>
+
+                          </div>
+                           
+                        </div>
+                        <div class="profile-img">
+                          <form class="form-user" id="reg-form">
+                          <div class="form-container">
+                              <div class="form-container-right">Nome:</div><div class="form-container-right"><input type="text" id="name"></div>
+                              <div class="form-container-right">Email:</div><div class="form-container-right"><input type="text" id="mail"></div>
+                              <div class="form-container-right">Telefone:</div><div class="form-container-right"><input  type="tel" id="phone"></div>
+                              <div class="form-container-right">Nascimento:</div><div class="form-container-right"><input type="date" id="birth"></div>
+                              <div class="form-container-right">CPF:</div><div class="form-container-right"><input type="text" id="cpf"></div>
+                              <div class="form-container-right">Endereço:</div><div class="form-container-right"><input type="text" id="address"></div>
+                              <div class="form-container-right">CEP:</div><div class="form-container-right"><input type="text" id="cep"></div>
+                              <div class="form-container-right">Cidade:</div><div class="form-container-right"><input type="text" id="city"></div>
+                              <div class="form-container-right">Estado:</div><div class="form-container-right"><input type="text" id="state"></div>
+                              <div class="form-container-right">Base:</div><div class="form-container-right"><select id="base"><option value="regular">Regular</option><option value="goofy" selected="selected">Goofy</option></select></div>
+                              <div class="form-container-right">Senha:</div><div class="form-container-right"><input type="password" id="password"></div>
+                              <div class="form-container-right">Repetir Senha:</div><div class="form-container-right"><input type="password"></div>
+                              <div class="form-container-right"><input type="submit" value="Submit Form"></div>
+
+                          </ul>
+                          </div>
+                          </form>
+
+                          <script>
+                            const form = document.getElementById('reg-form')
+                            form.addEventListener('submit', registerUser)
+
+                            async function registerUser(event){
+                              event.preventDefault()
+                              const name = document.getElementById('name').value
+                              const mail = document.getElementById('mail').value
+                              const phone = document.getElementById('phone').value
+                              const birth = document.getElementById('birth').value
+                              const cpf = document.getElementById('cpf').value
+                              const address = document.getElementById('address').value
+                              const cep = document.getElementById('cep').value
+                              const city = document.getElementById('city').value
+                              const state = document.getElementById('state').value
+                              const base = document.getElementById('base').value
+                              const password = document.getElementById('password').value
+
+                              const result = await fetch('/api/register', {
+                                method:'POST',
+                                headers:{
+                                  'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                  name,
+                                  mail,
+                                  phone,
+                                  birth,
+                                  cpf,
+                                  address,
+                                  cep,
+                                  city,
+                                  state,
+                                  base,
+                                  password
+                                })
+                              }).then((res)=> res.json())
+
+                            }
+                          </script>
+
+
+                        </div>
+                    </div>         
+            </div>
+          </main>
+
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+    </body>
+</html>

@@ -1,12 +1,15 @@
-import createUser from './UserController.js'
+import  {createUser} from './UserController.js'
 
 
 
-document.getElementById("btn-submit").addEventListener("click",registerUser)
+document.getElementById("btn-submit-register").addEventListener("click",registerUser)
 
 
 
 async function registerUser(event){
+
+    //fazer consistências
+
     event.preventDefault()
     const name = document.getElementById('name').value
     const mail = document.getElementById('mail').value

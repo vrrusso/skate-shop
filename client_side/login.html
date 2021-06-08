@@ -64,10 +64,10 @@
                     <div class="profile-canvas">
                         <div class="profile-infos">
                           <div class="form-container">
-                            <form action="index.html" class="form-user">
-                              <div class="form-container-right">Email:</div><div class="form-container-right"><input type="text"></div>
-                              <div class="form-container-right">Senha:</div><div class="form-container-right"><input type="password"></div>
-                              <div class="form-container-right"><button class="btn search">Login</button></div><div class="form-container-right"></div>
+                            <form class="form-user" onsubmit="return false;">
+                              <div class="form-container-right">Email:</div><div class="form-container-right"><input id="email-login" type="email"></div>
+                              <div class="form-container-right">Senha:</div><div class="form-container-right"><input id="password" type="password"></div>
+                              <div class="form-container-right"><button class="btn search" id="btn-submit-login">Login</button></div><div class="form-container-right"></div>
                               <div class="form-container-right"><a href="index.html" class="central-link">Recuperar Senha</a></div>
                             </form>
 
@@ -89,7 +89,7 @@
                             <div class="form-container-right">Base:</div><div class="form-container-right"><select id="base"><option value="regular">Regular</option><option value="goofy" selected="selected">Goofy</option></select></div>
                             <div class="form-container-right">Senha:</div><div class="form-container-right"><input type="password" id="password"></div>
                             <div class="form-container-right">Repetir Senha:</div><div class="form-container-right"><input type="password"></div>
-                              <div class="form-container-right"><button id="btn-submit" class="btn search">Registrar</button></div>
+                              <div class="form-container-right"><button id="btn-submit-register" class="btn search">Registrar</button></div>
 
                           </ul>
                           </div>
@@ -102,7 +102,7 @@
 
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-        <script src="UserSessionControl.js"></script>
+        <script type="module" src="UserSessionControl.js"></script>
         <script type="module" src="./SignUpControl.js"></script>
     </body>
 </html>

@@ -9,7 +9,7 @@
 
 //awaits for the DOM to be loaded
 
-import {checkAuth} from './UserController.js'
+import {checkAuth,User,getUserFromCurrentSession} from './UserController.js'
 
 document.addEventListener('DOMContentLoaded', checkUser )
 
@@ -18,6 +18,46 @@ if(document.getElementById('btn-submit-login') != null)
 
 if(document.getElementById('logout-link') != null)
     document.getElementById('logout-link').addEventListener('click', logout)
+
+if(window.location.pathname == '/user.html')
+    document.addEventListener('DOMContentLoaded', displayUserData )
+
+
+if(window.location.pathname == '/user_form.html')
+    document.addEventListener('DOMContentLoaded',displayUserDataForm)
+
+
+function displayUserDataForm(){
+    let user = getUserFromCurrentSession()
+    document.getElementById('user-name-input').value = user.name
+    document.getElementById('user-email-input').value = user.email
+    document.getElementById('user-tel-input').value = user.tel
+    document.getElementById('user-birthday-input').value = user.birthday
+    document.getElementById('user-cpf-input').value = user.cpf
+    document.getElementById('user-address-input').value = user.address
+    document.getElementById('user-cep-input').value = user.cep
+    document.getElementById('user-city-input').value = user.city
+    document.getElementById('user-state-input').value = user.state
+    if(user.base == "Regular")
+        document.getElementById("user-base-select").selectedIndex = "0"
+    else
+        document.getElementById("user-base-select").selectedIndex = "1"  
+}
+
+function displayUserData(){
+    let user = getUserFromCurrentSession()
+    document.getElementById('user-name-span').innerHTML = user.name
+    document.getElementById('user-email-span').innerHTML = user.email
+    document.getElementById('user-tel-span').innerHTML = user.tel
+    document.getElementById('user-birthday-span').innerHTML = user.birthday
+    document.getElementById('user-cpf-span').innerHTML = user.cpf
+    document.getElementById('user-address-span').innerHTML = user.address
+    document.getElementById('user-cep-span').innerHTML = user.cep
+    document.getElementById('user-city-span').innerHTML = user.city
+    document.getElementById('user-state-span').innerHTML = user.state
+    document.getElementById('user-base-span').innerHTML = user.base
+    
+}
 
 
 function login(){
@@ -30,11 +70,13 @@ function login(){
         console.log(auth)
         if(auth == 'user'){
             localStorage.setItem('privilege','1')
+            localStorage.setItem('userId','2')
             window.location.replace("./index.html")
             
         }
         else if(auth == 'adm'){
             localStorage.setItem('privilege','0')
+            localStorage.setItem('userId','1')
             window.location.replace("./index.html")
         }
         else{
@@ -48,6 +90,7 @@ function login(){
 function logout(){
     alert("Obrigado por comprar em nossa loja! ")
     localStorage.removeItem('privilege')
+    localStorage.removeItem('userId')
     window.location.replace("./index.html")
 
 }

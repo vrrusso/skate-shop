@@ -32,7 +32,6 @@ if(window.location.pathname == '/user_form.html')
 if(document.getElementById('conclude-purchase-link') != null){
     let user  = localStorage.privilege == undefined ? -1: localStorage.privilege
     switch(user){
-
         //admin
         case '0':
             break;
@@ -43,9 +42,11 @@ if(document.getElementById('conclude-purchase-link') != null){
         //guest
         default:
             document.getElementById('conclude-purchase-link').href = "./login.html"
-           
-
     }
+}
+
+if(document.getElementById('purchase-info-form')!=null){
+    document.addEventListener('DOMContentLoaded', displayUserAdress)
 }
 
 
@@ -162,4 +163,12 @@ function checkUser( ){
             cart_link.href ="cart.html"
 
     }
+}
+
+/**
+ * displayUserAdress
+ */
+function displayUserAdress(){
+    let user = getUserFromCurrentSession()
+    document.getElementById('adress-input').innerHTML = '<input type="radio" name="address" id="adress-radio-option" value="'+user.address+','+user.city+','+user.cep+'" checked><label for="1">'+user.address+','+user.city+','+user.cep+'</label><br>'
 }

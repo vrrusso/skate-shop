@@ -1,11 +1,24 @@
+/**
+ * This script controls the sign up action by the user
+ * 
+ *  
+ * 
+ */
+
+
+
 import  {createUser} from './UserController.js'
 
 
-
+//click event to the submit button
 document.getElementById("btn-submit-register").addEventListener("click",registerUser)
 
 
 
+/**
+ * 
+ *gets the user input, make consistencies checks and request the api to create the User on the DB
+ */
 async function registerUser(event){
 
     //fazer consistências

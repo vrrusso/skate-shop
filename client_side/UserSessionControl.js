@@ -27,6 +27,9 @@ if(window.location.pathname == '/user_form.html')
     document.addEventListener('DOMContentLoaded',displayUserDataForm)
 
 
+/**
+ * based on the current user, displays the data on the form
+ */
 function displayUserDataForm(){
     let user = getUserFromCurrentSession()
     document.getElementById('user-name-input').value = user.name
@@ -44,6 +47,9 @@ function displayUserDataForm(){
         document.getElementById("user-base-select").selectedIndex = "1"  
 }
 
+/**
+ * based on the current user display the data in static fields
+ */
 function displayUserData(){
     let user = getUserFromCurrentSession()
     document.getElementById('user-name-span').innerHTML = user.name
@@ -59,7 +65,9 @@ function displayUserData(){
     
 }
 
-
+/**
+ * controls the login 
+ */
 function login(){
     const email = document.getElementById('email-login').value
     const password = document.getElementById('password').value
@@ -86,7 +94,9 @@ function login(){
     }
 }
 
-
+/**
+ * make a logout
+ */
 function logout(){
     alert("Obrigado por comprar em nossa loja! ")
     localStorage.removeItem('privilege')

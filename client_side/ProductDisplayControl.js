@@ -1,5 +1,5 @@
 
-import {fetchProductsByType,Product} from './ProductController.js'
+import {fetchProductsByType,Product,fetchProductsByName} from './ProductController.js'
 
 
 document.addEventListener('DOMContentLoaded', displayActiveLink)
@@ -33,11 +33,11 @@ function displayProducts(){
     param = param.split('=')
     if(param[0] == 'type')
         displayProductsByType(param[1])
+    if(param[0] == 'name')
+        displayProductsByName(param[1])
 }
 
-
-function displayProductsByType(type){
-    const products = fetchProductsByType(type)
+function setLayout(products){
     let layout = ''
     let user  = localStorage.privilege == undefined ? -1: localStorage.privilege
     let link_text=''
@@ -60,7 +60,19 @@ function displayProductsByType(type){
         layout+='</div>'
         layout+='</div>'
     })
-    document.getElementById('container-feed-products').innerHTML = layout
+    
+    
+    return layout
+}
+
+function displayProductsByName(name){
+    const products = fetchProductsByName(name)
+    document.getElementById('container-feed-products').innerHTML = setLayout(products)
+}
+
+function displayProductsByType(type){
+    const products = fetchProductsByType(type)
+    document.getElementById('container-feed-products').innerHTML = setLayout(products)
 }
 
 

@@ -37,7 +37,30 @@ function displayProducts(){
 
 
 function displayProductsByType(type){
-    console.log(fetchProductsByType(type))
+    const products = fetchProductsByType(type)
+    let layout = ''
+    let user  = localStorage.privilege == undefined ? -1: localStorage.privilege
+    let link_text=''
+
+    /*admin */
+    if(user == '0')
+        link_text='Ver'
+    else
+        link_text='Comprar'
+    products.forEach(product =>{
+        console.log(product)
+        layout+= '<div class="central">'
+        layout+='<div class="central-title"><h3 class="central-text-title">'+product.name+'</h3></div>'
+        layout+='<div class="central-container">'
+        layout+='<div class="central-anchor-left">'
+        layout+='<div class="central-container-text"></div>'
+        layout+='<div class="central-container-footer"><a href="example_product.html?product_id='+product.id+'" class="central-link">'+link_text+'</a><span class="price-tag">$'+product.price+'</span></div>'
+        layout+='</div>'
+        layout+='<div class="central-container-img"><img src="'+product.img_path+'" width="180px"></div>'
+        layout+='</div>'
+        layout+='</div>'
+    })
+    document.getElementById('container-feed-products').innerHTML = layout
 }
 
 

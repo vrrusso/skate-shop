@@ -28,7 +28,7 @@ const Products = [
     new Product(4,30,'Shape Gang Tsuru','CISCO','shape',8.0,'Branco',19,3,'Shape Profissa 100% em marfim.','./img/shape2.png'),
     new Product(5,48,'Rolamento REDS','Bones','roda',8,'Vermelho',15,1,'Jogo com 8 rolamentos Bones.','./img/bearings.jpg'),
     new Product(6,35,'Shape Girl','Girl','shape',7.8,'Preto',7,0,'Shape gringo 100% Mapple','./img/shape_girl.jpg'),
-    new Product(7,50,'Shape Crail ProModel','Crail','truck',139,'Amarelo',5,2,'Truck usado pelos pros!','./img/truck_crail.png'),
+    new Product(7,50,'Shape Crail ProModel','Crail','truck',139,'Amarelo',5,2,'Truck usado pelos pros!','./img/truck_crail.jpg'),
 ]
 
 

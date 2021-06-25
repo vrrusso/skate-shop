@@ -31,4 +31,15 @@ const Products = [
     new Product(7,50,'Shape Crail ProModel','Crail','truck',139,'Amarelo',5,2,'Truck usado pelos pros!','./img/truck_crail.png'),
 ]
 
+
+var fetchProductsByType = function(type){
+    let arr = []
+    Products.forEach(product => {
+        if(product.type==type)
+            arr.push(product)
+    })
+    return arr
+}
+
+export {fetchProductsByType,Product}
 //console.log(Products)

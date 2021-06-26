@@ -51,5 +51,16 @@ var fetchProductsByName = function(name){
     return arr
 }
 
-export {fetchProductsByType,Product,fetchProductsByName}
+var getProductById = function(id){
+    id = parseInt(id,10)
+    let ret = null
+    Products.forEach(product =>{
+        if(product.id == id)
+            ret= product;
+    })
+    return ret;
+}
+
+
+export {fetchProductsByType,Product,fetchProductsByName,getProductById}
 //console.log(Products)

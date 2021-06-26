@@ -85,6 +85,7 @@ function displayUserData(){
     document.getElementById('user-city-span').innerHTML = user.city
     document.getElementById('user-state-span').innerHTML = user.state
     document.getElementById('user-base-span').innerHTML = user.base
+    document.getElementById('profile-img-user').src = user.img_path
     
 }
 

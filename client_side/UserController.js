@@ -21,7 +21,7 @@ var createUser = function(name,mail,phone,birth,cpf,address,cep,city,state,base,
  * the class that represents the user 
  */
 class User {
-    constructor(email, password,name,id,tel,birthday,cpf,adress,cep,city,state,base) {
+    constructor(email, password,name,id,tel,birthday,cpf,adress,cep,city,state,base,img_path) {
         this.email = email
         this.password = password 
         this.name = name
@@ -34,6 +34,7 @@ class User {
         this.city = city
         this.state = state
         this.base = base
+        this.img_path = img_path
     }
 }
 
@@ -42,9 +43,9 @@ class User {
 /**
  * a mockup common user, and admin user
  */
-const regular_user = new User('victor@russo.com','senha123','Victor Russo','2','(99)9999-99999','2000-12-21','666.666.666-66','Rua da USP,19-19','99999-9','São Carlos','SP','Goofy')
+const regular_user = new User('victor@russo.com','senha123','Victor Russo','2','(99)9999-99999','2000-12-21','666.666.666-66','Rua da USP,19-19','99999-9','São Carlos','SP','Goofy','./img/russo.jpg')
 
-const admin_user = new User('admin@skate.com','admin','Fabricio Hiromoto Chaves','1','(88)8888-88888','1976-04-22','333.333.333-33','Rua Ari Totti','99999-9','Canitar','SP','Regular')
+const admin_user = new User('admin@skate.com','admin','Fabricio Hiromoto Chaves','1','(88)8888-88888','1976-04-22','333.333.333-33','Rua Ari Totti','99999-9','Canitar','SP','Regular','./img/hiro.jpg')
 
 
 

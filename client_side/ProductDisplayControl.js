@@ -66,6 +66,7 @@ function setLayout(products){
 }
 
 function displayProductsByName(name){
+    document.getElementById('search-input').value = name
     const products = fetchProductsByName(name)
     document.getElementById('container-feed-products').innerHTML = setLayout(products)
 }

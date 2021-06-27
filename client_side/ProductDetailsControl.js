@@ -36,12 +36,12 @@ function displayAdminView(id){
     let layout = '<li>Marca: '+product.brand+'</li>'
     layout+='<li>Tamanho: '+product.size+'</li>'
     layout+='<li>Cor: '+product.color+'</li>'
-    layout+='<li><p>'+product.description+'</p></li>'
+    layout+='<li>'+product.description+'</li>'
     layout+='<li>Quantidade em Estoque: '+product.stock+'</li>'
     layout+='<li>Quantidade Vendida: '+product.sold+'</li>'
     document.getElementById('product-details-list').innerHTML = layout
     document.getElementById('product-price').innerHTML = '$'+ product.price
-    document.getElementById('actions-product-details').innerHTML = '<a href="product_form.html" class="central-link">Editar</a><a href="example_product.html" class="central-link">Excluir Produto</a>'
+    document.getElementById('actions-product-details').innerHTML = '<a href="product_form.html?product_id='+product.id+'" class="central-link">Editar</a><a href="example_product.html" class="central-link">Excluir Produto</a>'
 
     document.getElementById('product-img').innerHTML = '<img src="'+product.img_path+'" width="400">'
 

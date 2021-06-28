@@ -20,8 +20,62 @@ function displayProduct(){
             break;
         default:
             displayCostumerView(param)
+            document.getElementById("add-btn").addEventListener('click',addToTheCart)
     }
 }
+
+
+function addToTheCart(){
+    let product_id = window.location.search.substr(1).split('=')[1]
+    let qtd = document.getElementById('qtd').value
+
+    const product = getProductById(product_id)
+    
+
+    if(product.stock-product.sold-qtd <=0){
+        alert("Não há itens suficiente no estoque para essa venda! ")
+        return;
+    }
+    //console.log(product_id)
+    //console.log(qtd)
+
+    const obj = {
+        "product_id":product_id+"",
+        "qtd":qtd+"",
+    }
+
+    if(obj.qtd <= 0){
+        alert("Selecione uma quantidade válida!")
+        return;
+    }
+    
+    if(localStorage.cart == undefined){
+        let new_cart = {
+            "cart":[],
+        }
+        new_cart.cart.push(obj)
+        localStorage.setItem('cart',JSON.stringify(new_cart))
+    }
+    else{
+        let str = localStorage.cart
+        let cart = JSON.parse(str)
+        let index = -1
+        for(let i=0;i<cart.cart.length;i++){
+            if(cart.cart[i].product_id == obj.product_id)
+                index=i
+        }
+        if(index == -1){
+            cart.cart.push(obj)
+        }
+        else{
+            cart.cart[index].qtd = obj.qtd;             
+        }
+        localStorage.setItem('cart',JSON.stringify(cart))
+        console.log(JSON.parse(localStorage.cart))
+    }
+    window.location.replace("./cart.html");
+}
+
 
 /**
  * 
@@ -35,8 +89,8 @@ function displayCostumerView(id){
     layout+='<li>Cor: '+product.color+'</li>'
     layout+='<li><p>'+product.description+'</p></li>'
     document.getElementById('product-details-list').innerHTML = layout
-    document.getElementById('product-price').innerHTML = product.price
-    document.getElementById('actions-product-details').innerHTML = '<form action="cart.html">Quantidade:<input value="1" type="number"><br><button class="btn search" style="margin-top: 5px;">Adcionar ao Carrinho</button></form>'
+    document.getElementById('product-price').innerHTML = '$'+product.price
+    document.getElementById('actions-product-details').innerHTML = '<form onsubmit="return false;">Quantidade:<input value="1" id="qtd" type="number"><br><button id="add-btn" class="btn search" style="margin-top: 5px;">Adcionar ao Carrinho</button></form>'
     document.getElementById('product-img').innerHTML = '<img src="'+product.img_path+'" width="400">'
 }
 

@@ -26,6 +26,14 @@ if(window.location.pathname == '/user.html')
 if(window.location.pathname == '/user_form.html')
     document.addEventListener('DOMContentLoaded',displayUserDataForm)
 
+if(document.getElementById('purchase-button') != null )
+    document.getElementById('purchase-button').addEventListener('click', finishPurchase)
+
+function finishPurchase(){
+    alert("Compra Concluída com sucesso!")
+    localStorage.removeItem('cart')
+}
+
 /**
  * if a guest wants to end a purchase, the guest will be redirected to the sign in/up screen
  */

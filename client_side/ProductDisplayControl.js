@@ -1,3 +1,7 @@
+/**
+ * this script controls the display of the products on products page, filtering by name and by type
+ */
+
 
 import {fetchProductsByType,Product,fetchProductsByName} from './ProductController.js'
 
@@ -6,6 +10,9 @@ document.addEventListener('DOMContentLoaded', displayActiveLink)
 
 document.addEventListener('DOMContentLoaded', displayProducts)
 
+/**
+ * based on the type requested, change the correct link color
+ */
 function displayActiveLink(){
     let param = window.location.search.substr(1);
     param = param.split('=')
@@ -28,6 +35,9 @@ function displayActiveLink(){
     }
 }
 
+/**
+ * get the params from the request
+ */
 function displayProducts(){
     let param = window.location.search.substr(1);
     param = param.split('=')
@@ -37,6 +47,9 @@ function displayProducts(){
         displayProductsByName(param[1])
 }
 
+/**
+ * based on products, set the layout for the page
+ */
 function setLayout(products){
     let layout = ''
     let user  = localStorage.privilege == undefined ? -1: localStorage.privilege
@@ -65,12 +78,20 @@ function setLayout(products){
     return layout
 }
 
+/**
+ * 
+ * search the products based on name
+ */
 function displayProductsByName(name){
     document.getElementById('search-input').value = name
     const products = fetchProductsByName(name)
     document.getElementById('container-feed-products').innerHTML = setLayout(products)
 }
 
+/**
+ * 
+ * search the products based on type 
+ */
 function displayProductsByType(type){
     const products = fetchProductsByType(type)
     document.getElementById('container-feed-products').innerHTML = setLayout(products)

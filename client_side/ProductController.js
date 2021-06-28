@@ -32,6 +32,10 @@ const Products = [
 ]
 
 
+/**
+ * 
+ * Search products by type and returns an array of the matching products
+ */
 var fetchProductsByType = function(type){
     let arr = []
     Products.forEach(product => {
@@ -41,6 +45,11 @@ var fetchProductsByType = function(type){
     return arr
 }
 
+
+/**
+ * 
+ * Search products by name and returns an array of the matching products
+ */
 var fetchProductsByName = function(name){
     name = name.toUpperCase()
     let arr = []
@@ -51,6 +60,8 @@ var fetchProductsByName = function(name){
     return arr
 }
 
+
+//return a product based on his id
 var getProductById = function(id){
     id = parseInt(id,10)
     let ret = null

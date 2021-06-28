@@ -1,9 +1,15 @@
+/**
+ * this script controls the display of products info in example_product page
+ */
+
 
 import {Product,getProductById} from './ProductController.js'
 
 document.addEventListener('DOMContentLoaded', displayProduct )
 
-
+/**
+ * based on the id passed on the request and the privilege of the user, get the details of products
+ */
 function displayProduct(){
     let user  = localStorage.privilege == undefined ? -1: localStorage.privilege
     let param = window.location.search.substr(1).split('=')
@@ -17,6 +23,10 @@ function displayProduct(){
     }
 }
 
+/**
+ * 
+ * when the user is a costumer 
+ */
 function displayCostumerView(id){
     let product = getProductById(id)
     document.getElementById("product-name").innerHTML = product.name
@@ -30,6 +40,10 @@ function displayCostumerView(id){
     document.getElementById('product-img').innerHTML = '<img src="'+product.img_path+'" width="400">'
 }
 
+/**
+ * 
+ * when the user is a admin 
+ */
 function displayAdminView(id){
     let product = getProductById(id)
     document.getElementById("product-name").innerHTML = product.name

@@ -1,9 +1,15 @@
+/**
+ * this script controls the form of updating products
+ */
+
 
 import {Product,getProductById} from './ProductController.js'
 
 document.addEventListener('DOMContentLoaded',fillForm)
 
-
+/**
+ * fill the form with the current stored data
+ */
 function fillForm(){
     let param = window.location.search.substr(1).split('=')
     let id = param[1]

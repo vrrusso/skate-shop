@@ -4,16 +4,14 @@
 
 
 import {Product,getProductById} from './ProductController.js'
-
-document.addEventListener('DOMContentLoaded', displayProduct )
+import { fillForm } from './ProductFormControl.js'
+import { displayProductsPage } from './RouteControl.js'
 
 /**
  * based on the id passed on the request and the privilege of the user, get the details of products
  */
-function displayProduct(){
+var displayProduct = function(param){
     let user  = localStorage.privilege == undefined ? -1: localStorage.privilege
-    let param = window.location.search.substr(1).split('=')
-    param = param[1]
     switch(user){
         case '0':
             displayAdminView(param)
@@ -109,8 +107,56 @@ function displayAdminView(id){
     layout+='<li>Quantidade Vendida: '+product.sold+'</li>'
     document.getElementById('product-details-list').innerHTML = layout
     document.getElementById('product-price').innerHTML = '$'+ product.price
-    document.getElementById('actions-product-details').innerHTML = '<a href="product_form.html?product_id='+product.id+'" class="central-link">Editar</a><a href="example_product.html" class="central-link">Excluir Produto</a>'
+    document.getElementById('actions-product-details').innerHTML = '<a href="#" id="edit-link" class="central-link">Editar</a><a href="#" id="delete-link" class="central-link">Excluir Produto</a>'
 
     document.getElementById('product-img').innerHTML = '<img src="'+product.img_path+'" width="400">'
 
+    //in the final project there will be a BD interaction here, for now it is just a mockup
+    document.getElementById('delete-link').addEventListener('click', ()=>{
+        alert("Produto Excluído com sucesso")
+    })
+
+    document.getElementById('edit-link').addEventListener('click', () => displayProductEditForm(id) )
+
 }
+
+
+function displayProductEditForm(product_id){
+    document.getElementById('profile-canvas-product-details').innerHTML = `<div class="profile-infos">
+    <form onsubmit="return false;" class="form-user">
+    <div class="form-container">
+        <div class="form-container-right">Preço:</div><div class="form-container-right"><input id="price-input" step="0.5" type="number"></div>
+        <div class="form-container-right">Nome:</div><div class="form-container-right"><input id="name-input" type="text"></div>
+        <div class="form-container-right">Marca:</div><div class="form-container-right"><input id="brand-input" type="text"></div>
+        <div class="form-container-right">Tamanho:</div><div class="form-container-right"><input id="size-input" type="number" step="0.2"></div>
+        <div class="form-container-right">Cor:</div><div  class="form-container-right"><select id="color-input">
+            <option value="verde">Verde</option>
+            <option value="preto">Preto</option>
+            <option value="azul">Azul</option>
+            <option value="vermelho">Vermelho</option>
+            <option value="branco">Branco</option>
+            <option value="prata">Prata</option>
+            <option value="amarelo">Amarelo</option>
+          </select></div>
+          <!--pequena gambiarr que preciso estudar mais depois-->
+        <div class="form-container-right">Qtde. em Estoque:</div><div class="form-container-right"><input id="stock-input" type="number"></div>
+        <div class="form-container-right">Qtde. Vendida:</div><div class="form-container-right"><input id="sold-input" disabled type="number"></div>
+        <div class="form-container-right">Descrição:</div>
+        <div class="form-container-right"><textarea id="description-input"  rows="5" cols="40"></textarea></div>
+        <div class="form-container-right"><button id="btn-submit-edit-form" class="btn search">Alterar</button></div>
+
+    </ul>
+    </div>
+    </form>
+    </div>  
+    <div class="profile-img">
+        <img id="img-product" width="400">
+    </div>`
+    fillForm(product_id)
+
+    document.getElementById('btn-submit-edit-form').addEventListener('click',()=>{alert("Produto Alterado com Sucesso");displayProductsPage("name","")})
+
+}
+
+
+export {displayProduct}

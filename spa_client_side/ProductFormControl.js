@@ -10,10 +10,8 @@ document.addEventListener('DOMContentLoaded',fillForm)
 /**
  * fill the form with the current stored data
  */
-function fillForm(){
-    let param = window.location.search.substr(1).split('=')
-    let id = param[1]
-    let product = getProductById(id)
+var fillForm = function(product_id) {
+    let product = getProductById(product_id)
     document.getElementById('price-input').value = product.price
     document.getElementById('name-input').value = product.name
     document.getElementById('brand-input').value = product.brand
@@ -28,3 +26,4 @@ function fillForm(){
 
 }
 
+export {fillForm}

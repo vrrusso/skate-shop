@@ -2,6 +2,7 @@
 import {logout,login,displayUserData} from './UserSessionControl.js'
 import {registerUser} from './SignUpControl.js'
 import {displayProductsByType,displayProductsByName} from './ProductDisplayControl.js'
+import { displayProduct } from './ProductDetailsControl.js'
 
 document.getElementById("profile-link").addEventListener('click', displayProfilePage)
 document.getElementById("index-link").addEventListener('click',displayIndexPage)
@@ -316,7 +317,7 @@ function displayShapeDrawerPage(){
 }
 
 
-function displayProductsPage(query_field, filter){
+var displayProductsPage = function(query_field, filter){
     if(query_field == "type"){
         document.getElementById(filter+"-link").style.color = active_color
         document.getElementById(current_state+"-link").style.color = inactive_color
@@ -328,5 +329,9 @@ function displayProductsPage(query_field, filter){
         document.getElementById("main-container").innerHTML = ""
         displayProductsByName(filter)
     }
+
+    
 }
+
+export {displayProductsPage}
 

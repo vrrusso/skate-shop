@@ -3,6 +3,7 @@ import {logout,login,displayUserData} from './UserSessionControl.js'
 import {registerUser} from './SignUpControl.js'
 
 document.getElementById("profile-link").addEventListener('click', displayProfilePage)
+document.getElementById("index-link").addEventListener('click',displayIndexPage)
 
 var current_state = "index"
 
@@ -13,6 +14,7 @@ const inactive_color = "#767676"
 function displayProfilePage(){
     document.getElementById("profile-link").style.color = active_color
     document.getElementById(current_state+"-link").style.color = inactive_color
+    current_state = "profile"
 
     let user  = localStorage.privilege == undefined ? "-1": localStorage.privilege
 
@@ -91,3 +93,109 @@ function displayProfilePage(){
         break;
     }
 }
+
+
+function displayIndexPage(){
+    document.getElementById("index-link").style.color = active_color
+    document.getElementById(current_state+"-link").style.color = inactive_color
+    current_state = "index"
+
+    document.getElementById('main-container').innerHTML = `<div class="central">
+    <div class="central-title">
+        <h3 class="central-text-title">Skates Completos</h3>
+    </div>
+    <div class="central-container">
+        <div class="central-anchor-left">
+          <div class="central-container-text">
+              <p style="color:#FF7700;">Os melhores skates montados para iniciantes e amadores!</p>
+
+          </div>
+          <div class="central-container-footer">
+              <a href="#" class="central-link">Veja mais</a>
+          
+          </div>
+
+        </div>
+      
+      <div class="central-container-img">
+          <img src="img/sk8.png" width="180px">
+      </div>
+      
+    </div>
+    
+
+</div>
+<div class="central">
+  <div class="central-title">
+      <h3 class="central-text-title">Shapes</h3>
+  </div>
+  <div class="central-container">
+      <div class="central-anchor-left">
+        <div class="central-container-text">
+          <p style="color:#FF7700;">Shapes de marfin e mapple para o seu rolê!</p>
+        </div>
+        <div class="central-container-footer">
+            <a href="#" class="central-link">Veja mais</a>
+        
+        </div>
+
+      </div>
+    
+    <div class="central-container-img">
+        <img src="img/shape.jpg" width="180px">
+    </div>
+    
+  </div>
+  
+
+</div>
+<div class="central">
+  <div class="central-title">
+      <h3 class="central-text-title">Trucks</h3>
+  </div>
+  <div class="central-container">
+      <div class="central-anchor-left">
+        <div class="central-container-text">
+          <p style="color:#FF7700;">Trucks indestrutíveis para garantir aquele grind!</p>
+        </div>
+        <div class="central-container-footer">
+            <a href="#" class="central-link">Veja mais</a>
+        
+        </div>
+
+      </div>
+    
+    <div class="central-container-img">
+        <img src="img/truck.png" width="180px">
+    </div>
+    
+  </div>
+</div>
+<div class="central">
+  <div class="central-title">
+      <h3 class="central-text-title">Rodas e Rolamentos</h3>
+  </div>
+  <div class="central-container">
+      <div class="central-anchor-left">
+        <div class="central-container-text">
+          <p style="color:#FF7700;">Rodas e rolamentos para transformar seu skate numa nave sobre rodas!</p>
+
+        </div>
+        <div class="central-container-footer">
+            <a href="#" class="central-link">Veja mais</a>
+        
+        </div>
+
+      </div>
+    
+    <div class="central-container-img">
+        <img src="img/roda.png" width="180px">
+    </div>
+    
+  </div>
+  
+
+</div>`;
+
+}
+

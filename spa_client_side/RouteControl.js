@@ -1,9 +1,24 @@
 
 import {logout,login,displayUserData} from './UserSessionControl.js'
 import {registerUser} from './SignUpControl.js'
+import {displayProductsByType,displayProductsByName} from './ProductDisplayControl.js'
 
 document.getElementById("profile-link").addEventListener('click', displayProfilePage)
 document.getElementById("index-link").addEventListener('click',displayIndexPage)
+document.getElementById('about-link').addEventListener('click',displayAboutPage)
+document.getElementById('shape-drawer-link').addEventListener('click',displayShapeDrawerPage)
+
+document.getElementById('completo-link').addEventListener('click',()=>{ displayProductsPage("type","completo") })
+document.getElementById('shape-link').addEventListener('click',()=>{ displayProductsPage("type","shape") })
+document.getElementById('truck-link').addEventListener('click',()=>{ displayProductsPage("type","truck") })
+document.getElementById('roda-link').addEventListener('click',()=>{ displayProductsPage("type","roda") })
+
+document.getElementById('completo-body-link').addEventListener('click',()=>{ displayProductsPage("type","completo") })
+document.getElementById('shape-body-link').addEventListener('click',()=>{ displayProductsPage("type","shape") })
+document.getElementById('truck-body-link').addEventListener('click',()=>{ displayProductsPage("type","truck") })
+document.getElementById('roda-body-link').addEventListener('click',()=>{ displayProductsPage("type","roda") })
+
+document.getElementById('btn-search').addEventListener('click', ()=>{displayProductsPage('name',document.getElementById('search-input').value)} )
 
 var current_state = "index"
 
@@ -111,7 +126,7 @@ function displayIndexPage(){
 
           </div>
           <div class="central-container-footer">
-              <a href="#" class="central-link">Veja mais</a>
+              <a href="#" id="completo-body-link" class="central-link">Veja mais</a>
           
           </div>
 
@@ -135,7 +150,7 @@ function displayIndexPage(){
           <p style="color:#FF7700;">Shapes de marfin e mapple para o seu rolê!</p>
         </div>
         <div class="central-container-footer">
-            <a href="#" class="central-link">Veja mais</a>
+            <a href="#" id="shape-body-link" class="central-link">Veja mais</a>
         
         </div>
 
@@ -159,7 +174,7 @@ function displayIndexPage(){
           <p style="color:#FF7700;">Trucks indestrutíveis para garantir aquele grind!</p>
         </div>
         <div class="central-container-footer">
-            <a href="#" class="central-link">Veja mais</a>
+            <a href="#" id="truck-body-link" class="central-link">Veja mais</a>
         
         </div>
 
@@ -182,7 +197,7 @@ function displayIndexPage(){
 
         </div>
         <div class="central-container-footer">
-            <a href="#" class="central-link">Veja mais</a>
+            <a href="#" id="roda-body-link" class="central-link">Veja mais</a>
         
         </div>
 
@@ -197,5 +212,121 @@ function displayIndexPage(){
 
 </div>`;
 
+    document.getElementById('completo-body-link').addEventListener('click',()=>{ displayProductsPage("type","completo") })
+    document.getElementById('shape-body-link').addEventListener('click',()=>{ displayProductsPage("type","shape") })
+    document.getElementById('truck-body-link').addEventListener('click',()=>{ displayProductsPage("type","truck") })
+    document.getElementById('roda-body-link').addEventListener('click',()=>{ displayProductsPage("type","roda") })
+
+}
+
+
+
+function displayAboutPage(){
+    document.getElementById("about-link").style.color = active_color
+    document.getElementById(current_state+"-link").style.color = inactive_color
+    current_state = "about"
+
+    document.getElementById("main-container").innerHTML = `<div class="central">
+    <div class="central-title">
+        <h3 class="central-text-title">Caio Chaves</h3>
+    </div>
+    <div class="central-container">
+        <div class="central-anchor-left">
+          <div class="central-container-text">
+              <p></p>
+
+          </div>
+          <div class="central-container-footer">
+              
+          
+          </div>
+
+        </div>
+      
+      <div class="central-container-img">
+          <img src="img/caio.jpg" width="180px">
+      </div>
+      
+    </div>
+    
+
+</div>
+<div class="central">
+  <div class="central-title">
+      <h3 class="central-text-title">Guilherme Hiromoto</h3>
+  </div>
+  <div class="central-container">
+      <div class="central-anchor-left">
+        <div class="central-container-text">
+            <p></p>
+
+        </div>
+        <div class="central-container-footer">
+            
+        
+        </div>
+
+      </div>
+    
+    <div class="central-container-img">
+        <img src="img/hiro.jpg" width="180px">
+    </div>
+    
+  </div>
+</div>
+<div class="central">
+  <div class="central-title">
+      <h3 class="central-text-title">Victor Russo</h3>
+  </div>
+  <div class="central-container">
+      <div class="central-anchor-left">
+        <div class="central-container-text">
+            <p></p>
+
+        </div>
+        <div class="central-container-footer">
+            
+        
+        </div>
+
+      </div>
+    
+    <div class="central-container-img">
+        <img src="img/russo.jpg" width="180px">
+    </div>
+    
+  </div>
+</div>`;
+
+}
+
+
+function displayShapeDrawerPage(){
+    document.getElementById("shape-drawer-link").style.color = active_color
+    document.getElementById(current_state+"-link").style.color = inactive_color
+    current_state = "shape-drawer"
+
+    document.getElementById("main-container").innerHTML = `<div class="profile-canvas">
+    <div class="shape">
+    </div>
+    <button style="margin:auto;" class="btn search">Download</button>
+    <button class="btn search">Encomendar Shape</button>
+</div>`;
+
+}
+
+
+function displayProductsPage(query_field, filter){
+    if(query_field == "type"){
+        document.getElementById(filter+"-link").style.color = active_color
+        document.getElementById(current_state+"-link").style.color = inactive_color
+        current_state = filter
+        document.getElementById("main-container").innerHTML = ""
+        displayProductsByType(filter)
+    }
+    if(query_field == "name"){
+        document.getElementById("main-container").innerHTML = ""
+        displayProductsByName(filter)
+    }
 }
 

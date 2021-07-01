@@ -2,7 +2,7 @@
 import {logout,login,displayUserData} from './UserSessionControl.js'
 import {registerUser} from './SignUpControl.js'
 import {displayProductsByType,displayProductsByName} from './ProductDisplayControl.js'
-import { displayProduct } from './ProductDetailsControl.js'
+
 
 document.getElementById("profile-link").addEventListener('click', displayProfilePage)
 document.getElementById("index-link").addEventListener('click',displayIndexPage)
@@ -21,6 +21,9 @@ document.getElementById('roda-body-link').addEventListener('click',()=>{ display
 
 document.getElementById('btn-search').addEventListener('click', ()=>{displayProductsPage('name',document.getElementById('search-input').value)} )
 
+
+document.getElementById('cart-link').addEventListener('click', displayCartPage)
+
 var current_state = "index"
 
 const active_color = "#BA0303"
@@ -28,8 +31,8 @@ const inactive_color = "#767676"
 
 
 function displayProfilePage(){
-    document.getElementById("profile-link").style.color = active_color
     document.getElementById(current_state+"-link").style.color = inactive_color
+    document.getElementById("profile-link").style.color = active_color
     current_state = "profile"
 
     let user  = localStorage.privilege == undefined ? "-1": localStorage.privilege
@@ -112,8 +115,8 @@ function displayProfilePage(){
 
 
 function displayIndexPage(){
-    document.getElementById("index-link").style.color = active_color
     document.getElementById(current_state+"-link").style.color = inactive_color
+    document.getElementById("index-link").style.color = active_color
     current_state = "index"
 
     document.getElementById('main-container').innerHTML = `<div class="central">
@@ -223,8 +226,8 @@ function displayIndexPage(){
 
 
 function displayAboutPage(){
-    document.getElementById("about-link").style.color = active_color
     document.getElementById(current_state+"-link").style.color = inactive_color
+    document.getElementById("about-link").style.color = active_color
     current_state = "about"
 
     document.getElementById("main-container").innerHTML = `<div class="central">
@@ -303,8 +306,8 @@ function displayAboutPage(){
 
 
 function displayShapeDrawerPage(){
-    document.getElementById("shape-drawer-link").style.color = active_color
     document.getElementById(current_state+"-link").style.color = inactive_color
+    document.getElementById("shape-drawer-link").style.color = active_color
     current_state = "shape-drawer"
 
     document.getElementById("main-container").innerHTML = `<div class="profile-canvas">
@@ -319,8 +322,8 @@ function displayShapeDrawerPage(){
 
 var displayProductsPage = function(query_field, filter){
     if(query_field == "type"){
-        document.getElementById(filter+"-link").style.color = active_color
         document.getElementById(current_state+"-link").style.color = inactive_color
+        document.getElementById(filter+"-link").style.color = active_color
         current_state = filter
         document.getElementById("main-container").innerHTML = ""
         displayProductsByType(filter)
@@ -331,6 +334,52 @@ var displayProductsPage = function(query_field, filter){
     }
 
     
+}
+
+
+function displayCartPage(){
+    document.getElementById(current_state+"-link").style.color = inactive_color
+    document.getElementById("cart-link").style.color = active_color
+    current_state = "cart"
+    let user  = localStorage.privilege == undefined ? "-1": localStorage.privilege
+
+    switch(user){
+        /*admin*/
+        case '0':
+            document.getElementById('main-container').innerHTML = `<div class="profile-canvas">
+            <div class="profile-infos">
+                <form onsubmit="return false;" class="form-user">
+                <div class="form-container">
+                    <div class="form-container-right">Preço:</div><div class="form-container-right"><input value="20" step="0.5" type="number"></div>
+                    <div class="form-container-right">Nome:</div><div class="form-container-right"><input  type="text"></div>
+                    <div class="form-container-right">Marca:</div><div class="form-container-right"><input  type="text"></div>
+                    <div class="form-container-right">Tipo</div><div class="form-container-right"><select name="select">
+                        <option value="sk8">Skate Completo</option>
+                        <option value="shape" selected>Shape</option>
+                        <option value="truck">Truck</option>
+                        <option value="rodas">Rodas e Rolamentos</option>
+                      </select></div>
+                    <div class="form-container-right">Tamanho:</div><div class="form-container-right"><input type="number" value="8.0" step="0.2"></div>
+                    <div class="form-container-right">Cor:</div><div class="form-container-right"><select name="select">
+                        <option value="Verde"selected>Verde</option>
+                        <option value="Preto">Preto</option>
+                        <option value="Azul">Azul</option>
+                      </select></div>
+                    <div class="form-container-right">Qtde. em Estoque:</div><div class="form-container-right"><input value="100" type="number"></div>
+                    <div class="form-container-right">Descrição:</div>
+                    <div class="form-container-right"><textarea placeholder="Pequena descrição Textual" rows="5" cols="40"></textarea></div>
+                    <div class="form-container-right"><button id="btn-cadastrar" class="btn search">Cadastrar</button></div>
+
+                </ul>
+                </div>
+                </form>
+            </div>
+            <div class="profile-img">
+            </div>
+        </div>`
+        document.getElementById("btn-cadastrar").addEventListener('click', ()=>{ alert("Produto Cadastrado com Sucesso"); displayIndexPage() })
+        break;
+    }
 }
 
 export {displayProductsPage}

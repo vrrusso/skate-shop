@@ -23,7 +23,7 @@ var displayProduct = function(param){
     }
 }
 
-
+//add a product to the cart
 function addToTheCart(product_id){
     let qtd = document.getElementById('qtd').value
 
@@ -47,6 +47,8 @@ function addToTheCart(product_id){
         return;
     }
     
+
+    //if the cart is empty
     if(localStorage.cart == undefined){
         let new_cart = {
             "cart":[],
@@ -54,6 +56,9 @@ function addToTheCart(product_id){
         new_cart.cart.push(obj)
         localStorage.setItem('cart',JSON.stringify(new_cart))
     }
+
+
+    //if the cart already have items
     else{
         let str = localStorage.cart
         let cart = JSON.parse(str)
@@ -71,6 +76,8 @@ function addToTheCart(product_id){
         localStorage.setItem('cart',JSON.stringify(cart))
         console.log(JSON.parse(localStorage.cart))
     }
+
+    //calls the cart page
     displayCartPage()
     
 }
@@ -123,6 +130,11 @@ function displayAdminView(id){
 }
 
 
+/**
+ * 
+ * this function is responsible of showing the product edit form from the admin view
+ * 
+ */
 function displayProductEditForm(product_id){
     document.getElementById('profile-canvas-product-details').innerHTML = `<div class="profile-infos">
     <form onsubmit="return false;" class="form-user">
@@ -154,8 +166,12 @@ function displayProductEditForm(product_id){
     <div class="profile-img">
         <img id="img-product" width="400">
     </div>`
+
+    //fills the form with product data
     fillForm(product_id)
 
+
+    //mockup behavior of editing a product
     document.getElementById('btn-submit-edit-form').addEventListener('click',()=>{alert("Produto Alterado com Sucesso");displayProductsPage("name","")})
 
 }

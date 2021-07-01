@@ -8,46 +8,9 @@
 
 
 //awaits for the DOM to be loaded
-
 import {checkAuth,User,getUserFromCurrentSession} from './UserController.js'
 
 document.addEventListener('DOMContentLoaded', checkUser )
-
-
-
-
-
-
-
-
-
-
-
-
-
-/**
- * if a guest wants to end a purchase, the guest will be redirected to the sign in/up screen
- */
-if(document.getElementById('conclude-purchase-link') != null){
-    let user  = localStorage.privilege == undefined ? -1: localStorage.privilege
-    switch(user){
-        //admin
-        case '0':
-            break;
-        //user
-        case '1':
-            document.getElementById('conclude-purchase-link').href = "./payment.html"
-            break;
-        //guest
-        default:
-            document.getElementById('conclude-purchase-link').href = "./login.html"
-    }
-}
-
-if(document.getElementById('purchase-info-form')!=null){
-    document.addEventListener('DOMContentLoaded', displayUserAdress)
-}
-
 
 /**
  * based on the current user, displays the data on the form

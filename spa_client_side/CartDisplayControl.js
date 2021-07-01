@@ -1,9 +1,18 @@
+/**
+ * this script is responsible of fecthing the product of the cart on the cart screen
+ */
+
+
 import {Product,getProductById} from './ProductController.js'
 import { displayProductDetailsPage } from './ProductDisplayControl.js';
 
 
 
 
+/**
+ * 
+ * gets the products from the cart and displays them on sreen
+ */
 var  displayProductsCart = function(){
     const cart = JSON.parse(localStorage.getItem('cart'))
     let total=0;
@@ -39,7 +48,11 @@ var  displayProductsCart = function(){
 
 
     for(let i=0;i<cart.cart.length;i++){
+        //event to remove item from the cart
         document.getElementById('remove-'+cart.cart[i].product_id).addEventListener('click',()=>{removeProduct(cart.cart[i].product_id,i,total)})
+        
+        //event to edit some product
+        //the product screen will come up        
         document.getElementById('edit-'+cart.cart[i].product_id).addEventListener('click',()=>{displayProductDetailsPage(cart.cart[i].product_id)})
     }
 
@@ -47,6 +60,13 @@ var  displayProductsCart = function(){
 }
 
 
+
+/**
+ * 
+ * removes a product from the cart and from the screen
+ * product_id is the id of the product to be removed, index is the index of the product in the cart
+ * and total is the total value of the cart
+ */
 function removeProduct(product_id,index,total){
     document.getElementById(product_id).remove()
     console.log(product_id)

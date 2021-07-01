@@ -64,13 +64,15 @@ var displayProductsByType = function(type){
     setEvents(products)
 }
 
-
+//set the events for each product
 function setEvents(products){
     products.forEach(product => {
         document.getElementById(product.id+'-link').addEventListener('click',() => displayProductDetailsPage(product.id))
     })
 }
 
+
+//display the details of a product
 var displayProductDetailsPage = function(productId){
     document.getElementById('main-container').innerHTML = `<div id="profile-canvas-product-details" class="profile-canvas">
 

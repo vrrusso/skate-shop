@@ -19,16 +19,11 @@ document.addEventListener('DOMContentLoaded', checkUser )
 
 
 
-if(window.location.pathname == '/user_form.html')
-    document.addEventListener('DOMContentLoaded',displayUserDataForm)
 
-if(document.getElementById('purchase-button') != null )
-    document.getElementById('purchase-button').addEventListener('click', finishPurchase)
 
-function finishPurchase(){
-    alert("Compra Concluída com sucesso!")
-    localStorage.removeItem('cart')
-}
+
+
+
 
 /**
  * if a guest wants to end a purchase, the guest will be redirected to the sign in/up screen
@@ -175,10 +170,10 @@ function checkUser( ){
 /**
  * displayUserAdress
  */
-function displayUserAdress(){
+var displayUserAdress = function(){
     let user = getUserFromCurrentSession()
     document.getElementById('adress-input').innerHTML = '<input type="radio" name="address" id="adress-radio-option" value="'+user.address+','+user.city+','+user.cep+'" checked><label for="1">'+user.address+','+user.city+','+user.cep+'</label><br>'
 }
 
 
-export {logout,login,displayUserData}
+export {logout,login,displayUserData,displayUserAdress,displayUserDataForm}

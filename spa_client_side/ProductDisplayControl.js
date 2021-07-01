@@ -71,7 +71,7 @@ function setEvents(products){
     })
 }
 
-function displayProductDetailsPage(productId){
+var displayProductDetailsPage = function(productId){
     document.getElementById('main-container').innerHTML = `<div id="profile-canvas-product-details" class="profile-canvas">
 
     <div  class="profile-infos">
@@ -95,7 +95,7 @@ function displayProductDetailsPage(productId){
 
 }
 
-export {displayProductsByType,displayProductsByName}
+export {displayProductsByType,displayProductsByName,displayProductDetailsPage}
 
 
 

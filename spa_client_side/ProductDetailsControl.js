@@ -6,6 +6,7 @@
 import {Product,getProductById} from './ProductController.js'
 import { fillForm } from './ProductFormControl.js'
 import { displayProductsPage } from './RouteControl.js'
+import { displayCartPage } from './RouteControl.js'
 
 /**
  * based on the id passed on the request and the privilege of the user, get the details of products
@@ -18,13 +19,12 @@ var displayProduct = function(param){
             break;
         default:
             displayCostumerView(param)
-            document.getElementById("add-btn").addEventListener('click',addToTheCart)
+            document.getElementById('add-btn').addEventListener('click',()=>{addToTheCart(param)})
     }
 }
 
 
-function addToTheCart(){
-    let product_id = window.location.search.substr(1).split('=')[1]
+function addToTheCart(product_id){
     let qtd = document.getElementById('qtd').value
 
     const product = getProductById(product_id)
@@ -71,7 +71,8 @@ function addToTheCart(){
         localStorage.setItem('cart',JSON.stringify(cart))
         console.log(JSON.parse(localStorage.cart))
     }
-    window.location.replace("./cart.html");
+    displayCartPage()
+    
 }
 
 
@@ -90,6 +91,7 @@ function displayCostumerView(id){
     document.getElementById('product-price').innerHTML = '$'+product.price
     document.getElementById('actions-product-details').innerHTML = '<form onsubmit="return false;">Quantidade:<input value="1" id="qtd" type="number"><br><button id="add-btn" class="btn search" style="margin-top: 5px;">Adcionar ao Carrinho</button></form>'
     document.getElementById('product-img').innerHTML = '<img src="'+product.img_path+'" width="400">'
+    
 }
 
 /**

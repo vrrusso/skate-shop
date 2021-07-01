@@ -1,7 +1,8 @@
 
-import {logout,login,displayUserData} from './UserSessionControl.js'
+import {logout,login,displayUserData,displayUserAdress,displayUserDataForm} from './UserSessionControl.js'
 import {registerUser} from './SignUpControl.js'
 import {displayProductsByType,displayProductsByName} from './ProductDisplayControl.js'
+import {displayProductsCart} from './CartDisplayControl.js'
 
 
 document.getElementById("profile-link").addEventListener('click', displayProfilePage)
@@ -22,7 +23,7 @@ document.getElementById('roda-body-link').addEventListener('click',()=>{ display
 document.getElementById('btn-search').addEventListener('click', ()=>{displayProductsPage('name',document.getElementById('search-input').value)} )
 
 
-document.getElementById('cart-link').addEventListener('click', displayCartPage)
+document.getElementById('cart-link').addEventListener('click', ()=>{displayCartPage()})
 
 var current_state = "index"
 
@@ -99,7 +100,7 @@ function displayProfilePage(){
                     '<li>Estado: <span id = "user-state-span"></span></li>'+
                     '<li>Base: <span id = "user-base-span"></span></li>'+
                 '</ul>'+
-                '<a href="#" class="central-link-white">Alterar Dados</a>'+
+                '<a href="#" id="alter-link" class="central-link-white">Alterar Dados</a>'+
                 '<a href="#" id="logout-link" class="central-link-white">Logout</a>'+
             '</div>'+
             '<div class="profile-img">'+
@@ -107,10 +108,41 @@ function displayProfilePage(){
             '</div>'+
         '</div>';
         document.getElementById('logout-link').addEventListener('click',logout)
+        document.getElementById('alter-link').addEventListener('click', displayUserFormPage)
         displayUserData()
 
         break;
     }
+}
+
+
+function displayUserFormPage(){
+  document.getElementById('main-container').innerHTML = `<div class="profile-canvas">
+  <div class="profile-infos">
+      <form action="return false;" class="form-user">
+      <div class="form-container">
+          <div class="form-container-right">Nome:</div><div class="form-container-right"><input id="user-name-input" type="text"></div>
+          <div class="form-container-right">Email:</div><div class="form-container-right"><input id="user-email-input" type="text"></div>
+          <div class="form-container-right">Telefone:</div><div class="form-container-right"><input id="user-tel-input"  type="tel" ></div>
+          <div class="form-container-right">Nascimento:</div><div class="form-container-right"><input id="user-birthday-input" type="date"></div>
+          <div class="form-container-right">CPF:</div><div class="form-container-right"><input id="user-cpf-input" type="text"></div>
+          <div class="form-container-right">Endereço:</div><div class="form-container-right"><input id="user-address-input" type="text"></div>
+          <div class="form-container-right">CEP:</div><div class="form-container-right"><input id="user-cep-input" type="text"></div>
+          <div class="form-container-right">Cidade:</div><div class="form-container-right"><input id="user-city-input" type="text"></div>
+          <div class="form-container-right">Estado:</div><div class="form-container-right"><input id="user-state-input" type="text"></div>
+          <div class="form-container-right">Base:</div><div class="form-container-right"><select id="user-base-select"><option value="regular">Regular</option><option value="goofy">Goofy</option></select></div>
+          <div class="form-container-right"><button id="btn-alter" class="btn search">Alterar</button></div>
+
+      </ul>
+      </div>
+      </form>
+  </div>
+  <div class="profile-img">
+      <img src="img/russo.jpg" width="400">
+  </div>
+</div>`;
+  displayUserDataForm();
+  document.getElementById('btn-alter').addEventListener('click',displayProfilePage)
 }
 
 
@@ -337,7 +369,7 @@ var displayProductsPage = function(query_field, filter){
 }
 
 
-function displayCartPage(){
+var displayCartPage = function(){
     document.getElementById(current_state+"-link").style.color = inactive_color
     document.getElementById("cart-link").style.color = active_color
     current_state = "cart"
@@ -379,8 +411,56 @@ function displayCartPage(){
         </div>`
         document.getElementById("btn-cadastrar").addEventListener('click', ()=>{ alert("Produto Cadastrado com Sucesso"); displayIndexPage() })
         break;
+        default:
+          document.getElementById('main-container').innerHTML = `<span id="products-cart-container"></span><div class="cart-footer"><span class="cart-info" id="total-value">Valor Total: $0</span>
+          <a id="conclude-purchase-link" class="central-link" style="margin-left: 400px;">Finalizar Compra</a></div>`;
+          displayProductsCart()
+          document.getElementById('conclude-purchase-link').addEventListener('click', displayPaymentPage)
     }
 }
 
-export {displayProductsPage}
+function displayPaymentPage(){
+  let user  = localStorage.privilege == undefined ? "-1": localStorage.privilege
+  switch (user){
+    case "-1": alert("Execute Login para finalizar sua compra!"); displayProfilePage()
+      break;
+    default:
+      document.getElementById('main-container').innerHTML = `<div class="profile-canvas">
+      <div class="profile-infos">
+          <form id="purchase-info-form" onsubmit="return false;" class="form-user">
+          <div class="form-container">
+              Endereço:<br>
+              <!--
+              <input type="radio" name="address" id="1" checked><label for="1">Rua da USP, 19-19, São Carlos-SP, 99999-99</label><br>
+              <input type="radio" name="address" id="2"><label for="2">Rua da UFSCAR, 18-18, São Carlos-SP, 99988-99</label><br>
+              -->
+              <span id= "adress-input"></span>
+              <input type="radio" name="address"><input placeholder="Outro endereço..." type="text"  id="adress-text-option"><br>
+              Número do Cartão*:
+              <input required type="text">
+              <button id="purchase-button" class="btn search">Comprar</button>
+
+          </ul>
+          </div>
+          </form>
+      </div>
+      <div class="profile-img">
+          
+      </div>
+  </div>`
+      displayUserAdress();
+      document.getElementById('purchase-button').addEventListener('click',finishPurchase)
+      break;
+  }
+}
+
+
+function finishPurchase(){
+  alert("Compra Concluída com sucesso!")
+  localStorage.removeItem('cart')
+  displayIndexPage()
+
+}
+
+export {displayProductsPage,displayCartPage}
 

@@ -36,9 +36,14 @@ $ git clone https://github.com/vrrusso/skate-shop
 # Go into the repository
 $ cd skate-shop
 
-# Go into the SPA client side directory
-$ node server.js
+# Install express
+$ npm install express
 
+# Go into the SPA client side directory
+$ cd spa_client_side
+
+# Run server
+$ node server.js
 ```
 
 ## Project Description

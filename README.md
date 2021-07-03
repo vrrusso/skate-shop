@@ -12,7 +12,8 @@
   <a href="#group-26">Group 26</a> •
   <a href="#requirements">Requirements</a> •
   <a href="#project-description">Project Description</a> •
-  <a href="#TODO">TODO</a> •
+  <a href="#single-page-application">SPA</a> •
+  <a href="#tests">Tests</a> •
   
 </p>
 
@@ -35,16 +36,10 @@ $ git clone https://github.com/vrrusso/skate-shop
 # Go into the repository
 $ cd skate-shop
 
-# Install dependencies
-$ npm install
+# Go into the SPA client side directory
+$ node server.js
 
-(Currently not functional, it is necessary to open each index.html with browser)
-# Run the app
-$ npm start
 ```
-
-Note: The project does not currently have any Node.js code, the requirements refer to the project's next steps.
-
 
 ## Project Description
 
@@ -75,9 +70,114 @@ If logged in as a **Adminstrator**, the admin can:
 
 ![screenshot](https://i.imgur.com/kjgoFG4.png)
 
-## Test Plan
+## Single Page Application
 
-## Test Results
+The application is a Web SPA, which means it has only one web page that is served with the content of different pages making the transitions seamless. To make this possible, there is a routing script that handles the action connected to navigation that the user could do, serving the front-end with the appropriate HTML.
+
+There are the Control scripts, that are responsible for dynamic placing data on screen, i.e.  loads the user data on the profile screen, or the appropriate products given a search string.
+
+Last, there are the Controller scripts wich are responsible for interaction with the DB. As just the client side is done for now, the controller script are mock up scripts, that have some instances of products and users hardcoded on it. If you want for tests purpose add some new data, add It direct on the code. In the final iteration of the project, the Controller scripts will be responsible for the interaction with the MongoDB service. The user session is controlled in the localStorage, as the items on the cart.
+
+For now, the HTML for each page is served as a string on the routing script, but for the last iteration, the pages will be placed on HTML files and be fetched on the JS, making the code cleaner. No fancy JS frameworks were used, but it is possible that Vue.js may be used for better form validation.
+
+## Tests
+
+In this section we will detail all the tests performed on the topics described presented in the Project Description section.
+
+### Sign Up
+
+![screenshot](https://i.imgur.com/r7Wricf.png)
+
+![screenshot](https://i.imgur.com/HRrr4u3.png)
+
+### Login
+
+Home before login
+
+![screenshot](https://i.imgur.com/76dNImj.png)
+
+Wrong login
+
+![screenshot](https://i.imgur.com/20m06qp.png)
+
+Home after successful login
+
+![screenshot](https://i.imgur.com/5LNIOCn.png)
+
+Its possible to login as user with:
+
+```
+  email: victor@russo.com
+  password: senha123
+```
+
+### Search Products
+
+Searching for "crail promodel"
+
+![screenshot](https://i.imgur.com/LcPmaRB.png)
+
+Result of products available at the skate shop related to the search
+
+![screenshot](https://i.imgur.com/SLX9rHl.png)
+
+### Cart
+
+It is possible to add the desired products to the cart.
+
+![screenshot](https://i.imgur.com/uywq8eN.png)
+
+It is also possible to edit and remove products from the cart.
+
+![screenshot](https://i.imgur.com/qtZK4we.png)
+
+![screenshot](https://i.imgur.com/7jz6SVF.png)
+
+Specifying the delivery address and finishing the purchase of the entire cart.
+
+![screenshot](https://i.imgur.com/FhBUlvm.png)
+
+![screenshot](https://i.imgur.com/Yk1uydc.png)
+
+### Logout
+
+![screenshot](https://i.imgur.com/BFy9vkC.png)
+
+### Login verification
+
+It is important to ensure that the user is logged in to make a purchase.
+
+![screenshot](https://i.imgur.com/nylN0o1.png)
+
+### Add new products (Admin)
+
+Its possible to login as admin with:
+
+```
+  email: skate@skate.com
+  password: admin
+```
+
+On the home page menu, there is a section to add a new product in the skate shop catalog.
+
+![screenshot](https://i.imgur.com/qoKKAt1.png)
+
+Registering a new product
+
+![screenshot](https://i.imgur.com/sobyPZ0.png)
+
+![screenshot](https://i.imgur.com/KIv0ljT.png)
+
+
+### Edit Products
+
+Admin can also change some specifications of the products that already exist in the skate shop catalog.
+
+![screenshot](https://i.imgur.com/ieH3mHL.png)
+
+![screenshot](https://i.imgur.com/0JX0dWa.png)
+
+![screenshot](https://i.imgur.com/zTiPEGv.png)
 
 ## Problems
 

@@ -9,11 +9,15 @@
 /**
  *  mockup function that returns true if the user is created
  */
-var createUser = function(name,mail,phone,birth,cpf,address,cep,city,state,base,password){
+var createUser = function(name,mail,phone,birth,cpf,address,cep,city,state,base,password, repassword){
+    if(name == "" || mail == "" || phone == "" || birth == "" || cpf == "" || address == "" || 
+	    cep == "" || city == "" || state == "" || base == "" || password == "" || repassword == ""){
+         return -1;
+    }
 
-
-
-    return true
+    else{
+         return 0;
+    }
 }
 
 
@@ -55,7 +59,7 @@ const admin_user = new User('admin@skate.com','admin','Fabricio Hiromoto Chaves'
  */
 var checkAuth = function(email,password){
     if(email == regular_user.email && password == regular_user.password){
-        return 'user'
+       return 'user'
     }
 
     if(email == admin_user.email && password == admin_user.password){

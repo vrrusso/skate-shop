@@ -31,16 +31,49 @@ const Products = [
     new Product(7,50,'Truck Crail ProModel','Crail','truck',139,'Amarelo',5,2,'Truck usado pelos pros!','./img/truck_crail.jpg'),
 ]
 
+var createProduct = async function(p) {
+    let resp = await fetch("http://localhost:3000/product/",{
+                method:'POST',
+                mode: 'cors',
+                cache:'no-cache',
+                credentials:'same-origin',
+                headers:{
+                  'Content-Type':'application/json'
+                },
+                redirect:'follow',
+                referrerPolicy: 'no-referrer',
+                body: JSON.stringify({
+                  price:p.price,
+                  name:p.name,
+                  brand:p.brand,
+                  type:p.type,
+                  size:p.size,
+                  color:p.color,
+                  stock:p.stock,
+                  sold:p.sold,
+                  description:p.description,
+                  img_path: p.img_path
+
+                })
+              })
+    resp = await resp.json()
+    return resp
+    
+}
+
 
 /**
  * 
  * Search products by type and returns an array of the matching products
  */
-var fetchProductsByType = function(type){
+var fetchProductsByType = async function(type){
     let arr = []
-    Products.forEach(product => {
-        if(product.type==type)
-            arr.push(product)
+    let resp = await fetch("http://localhost:3000/product/type/"+type)
+    let body = await resp.json()
+    console.log(body)
+    body.forEach(b =>{
+        console.log(b)
+        arr.push(new Product(0,b.price,b.name,b.brand,b.type,b.size,b.color,b.stock,b.sold,b.description,b.img_path))
     })
     return arr
 }
@@ -73,5 +106,5 @@ var getProductById = function(id){
 }
 
 
-export {fetchProductsByType,Product,fetchProductsByName,getProductById}
+export {fetchProductsByType,Product,fetchProductsByName,getProductById,createProduct}
 //console.log(Products)

@@ -58,8 +58,8 @@ var displayProductsByName = function(name){
  * 
  * search the products based on type 
  */
-var displayProductsByType = function(type){
-    const products = fetchProductsByType(type)
+var displayProductsByType = async function(type){
+    const products = await fetchProductsByType(type)
     document.getElementById('main-container').innerHTML = setLayout(products)
     setEvents(products)
 }

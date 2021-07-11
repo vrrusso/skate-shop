@@ -15,6 +15,7 @@ import {logout,login,displayUserData,displayUserAdress,displayUserDataForm} from
 import {registerUser} from './SignUpControl.js'
 import {displayProductsByType,displayProductsByName} from './ProductDisplayControl.js'
 import {displayProductsCart} from './CartDisplayControl.js'
+import {Product,createProduct} from './ProductController.js'
 
 
 
@@ -247,7 +248,7 @@ var displayCartPage = async function(){
             document.getElementById('main-container').innerHTML = resp
         
         //mockup  behavior of creating a new product
-        document.getElementById("btn-cadastrar").addEventListener('click', ()=>{ alert("Produto Cadastrado com Sucesso"); displayIndexPage() })
+        document.getElementById("btn-cadastrar").addEventListener('click', ()=>{ saveProduct() })
         break;
         default:
           //cart page
@@ -291,6 +292,24 @@ function finishPurchase(){
   localStorage.removeItem('cart')
   displayIndexPage()
 
+}
+
+async function saveProduct(){
+  let p = new Product(0,document.getElementById('price-input').value,
+  document.getElementById('name-input').value,
+  document.getElementById('brand-input').value,
+  document.getElementById('type-input').value,
+  document.getElementById('size-input').value,
+  document.getElementById('color-input').value,
+  document.getElementById('stock-input').value,
+  0,
+  document.getElementById('description-input').value,
+  "./img/roda.png"
+  )
+  let resp = await createProduct(p)
+  alert(resp.message)
+
+  
 }
 
 export {displayProductsPage,displayCartPage}

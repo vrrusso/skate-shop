@@ -47,9 +47,9 @@ function setLayout(products){
  * 
  * search the products based on name
  */
-var displayProductsByName = function(name){
+var displayProductsByName = async function(name){
     document.getElementById('search-input').value = name
-    const products = fetchProductsByName(name)
+    const products = await fetchProductsByName(name)
     document.getElementById('main-container').innerHTML = setLayout(products)
     setEvents(products)
 }

@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 
+
 const schema = new Schema({
     price: {
         type:Number,
@@ -47,5 +48,7 @@ const schema = new Schema({
 
 
 })
+
+schema.index({name: 'text'});
 
 module.exports = mongoose.model('Product',schema)

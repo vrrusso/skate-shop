@@ -73,7 +73,7 @@ var fetchProductsByType = async function(type){
     console.log(body)
     body.forEach(b =>{
         console.log(b)
-        arr.push(new Product(0,b.price,b.name,b.brand,b.type,b.size,b.color,b.stock,b.sold,b.description,b.img_path))
+        arr.push(new Product(b._id,b.price,b.name,b.brand,b.type,b.size,b.color,b.stock,b.sold,b.description,b.img_path))
     })
     return arr
 }
@@ -83,12 +83,20 @@ var fetchProductsByType = async function(type){
  * 
  * Search products by name and returns an array of the matching products
  */
-var fetchProductsByName = function(name){
+var fetchProductsByName = async function(name){
     name = name.toUpperCase()
     let arr = []
-    Products.forEach(product=>{
-        if(product.name.toUpperCase().includes(name))
-            arr.push(product)
+    let resp = null
+    if(name == ""){
+        resp = await fetch("http://localhost:3000/product")
+    }
+    else
+        resp = await fetch("http://localhost:3000/product/name/"+name)
+
+    let body = await resp.json()
+    body.forEach(b =>{
+        console.log(b)
+        arr.push(new Product(b._id,b.price,b.name,b.brand,b.type,b.size,b.color,b.stock,b.sold,b.description,b.img_path))
     })
     return arr
 }

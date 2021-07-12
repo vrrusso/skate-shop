@@ -26,7 +26,6 @@ function setLayout(products){
 
 
     products.forEach(product =>{
-        console.log(product)
         layout+= '<div class="central">'
         layout+='<div class="central-title"><h3 class="central-text-title">'+product.name+'</h3></div>'
         layout+='<div class="central-container">'

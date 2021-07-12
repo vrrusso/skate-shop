@@ -26,6 +26,16 @@ exports.getByName= (req,res,next) => {
     })
 }
 
+exports.getById= (req,res,next) => {
+    Product.findById(req.params.id).then(data =>{
+        console.log(data)
+        res.status(200).send(data)
+    }).catch(e=>{
+        res.status(400).send(e)
+    })
+}
+
+
 exports.getAll= (req,res,next) => {
     Product.find({}).then(data =>{
         res.status(200).send(data)

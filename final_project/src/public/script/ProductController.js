@@ -72,7 +72,7 @@ var fetchProductsByType = async function(type){
     let body = await resp.json()
     console.log(body)
     body.forEach(b =>{
-        console.log(b)
+        //console.log(b)
         arr.push(new Product(b._id,b.price,b.name,b.brand,b.type,b.size,b.color,b.stock,b.sold,b.description,b.img_path))
     })
     return arr
@@ -95,7 +95,7 @@ var fetchProductsByName = async function(name){
 
     let body = await resp.json()
     body.forEach(b =>{
-        console.log(b)
+        //console.log(b)
         arr.push(new Product(b._id,b.price,b.name,b.brand,b.type,b.size,b.color,b.stock,b.sold,b.description,b.img_path))
     })
     return arr
@@ -103,16 +103,14 @@ var fetchProductsByName = async function(name){
 
 
 //return a product based on his id
-var getProductById = function(id){
-    id = parseInt(id,10)
-    let ret = null
-    Products.forEach(product =>{
-        if(product.id == id)
-            ret= product;
-    })
-    return ret;
+var getProductById = async function(id){
+    let resp = await fetch("http://localhost:3000/product/id/"+id)
+    let b = await resp.json()
+    //console.log(b)
+    let p = new Product(b._id,b.price,b.name,b.brand,b.type,b.size,b.color,b.stock,b.sold,b.description,b.img_path)
+    console.log(p)
+    return p
 }
 
 
 export {fetchProductsByType,Product,fetchProductsByName,getProductById,createProduct}
-//console.log(Products)

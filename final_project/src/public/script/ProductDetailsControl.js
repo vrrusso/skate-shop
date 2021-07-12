@@ -105,8 +105,9 @@ function displayCostumerView(id){
  * 
  * when the user is a admin 
  */
-function displayAdminView(id){
-    let product = getProductById(id)
+async function displayAdminView(id){
+    let product = await getProductById(id)
+    console.log(product.name)
     document.getElementById("product-name").innerHTML = product.name
     let layout = '<li>Marca: '+product.brand+'</li>'
     layout+='<li>Tamanho: '+product.size+'</li>'

@@ -17,6 +17,8 @@ import {displayProductsByType,displayProductsByName} from './ProductDisplayContr
 import {displayProductsCart} from './CartDisplayControl.js'
 import {Product,createProduct} from './ProductController.js'
 
+import {getUserPrivilege} from './UserController.js'
+
 
 
 /**
@@ -143,7 +145,43 @@ async function displayUserFormPage(){
   displayUserDataForm();
 
   //just a mockup as there is no BD in the project
-  document.getElementById('btn-alter').addEventListener('click',)
+  document.getElementById('btn-alter').addEventListener('click',async ()=>{
+    let id = localStorage.userId
+    let resp = await fetch("http://localhost:3000/user/"+id,{
+                method:'PUT',
+                mode: 'cors',
+                cache:'no-cache',
+                credentials:'same-origin',
+                headers:{
+                  'Content-Type':'application/json'
+                },
+                redirect:'follow',
+                referrerPolicy: 'no-referrer',
+                body: JSON.stringify({
+                  name:document.getElementById('user-name-input').value,
+                  mail:document.getElementById('user-email-input').value,
+                  phone:document.getElementById('user-tel-input').value,
+                  birth:document.getElementById('user-birthday-input').value,
+                  cpf:document.getElementById('user-cpf-input').value,
+                  address: document.getElementById('user-address-input').value,
+                  cep:document.getElementById('user-cep-input').value,
+                  city:document.getElementById('user-city-input').value,
+                  state:document.getElementById('user-state-input').value,
+                  base:document.getElementById('user-base-select').value,
+
+                })
+              })
+    if(resp.status == 200){
+      resp = await resp.json()
+      alert(resp.message)
+      displayProfilePage()
+    }
+    else{
+      resp = await resp.json()
+      alert(resp.message)
+    }
+  }
+  )
 }
 
 

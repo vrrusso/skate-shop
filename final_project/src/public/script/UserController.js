@@ -113,4 +113,11 @@ var getUserFromCurrentSession = async function(){
     return u
 }
 
-export { createUser, checkAuth, User,getUserFromCurrentSession}
+
+var getUserPrivilege = async function(){
+    let resp = await fetch("http://localhost:3000/user/"+localStorage.userId)
+    resp = await resp.json()
+    return resp.data.privilege
+}
+
+export { createUser, checkAuth, User,getUserFromCurrentSession,getUserPrivilege}

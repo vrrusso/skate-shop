@@ -28,7 +28,6 @@ exports.getByName= (req,res,next) => {
 
 exports.getById= (req,res,next) => {
     Product.findById(req.params.id).then(data =>{
-        console.log(data)
         res.status(200).send(data)
     }).catch(e=>{
         res.status(400).send(e)
@@ -52,5 +51,21 @@ exports.post = (req,res,next) => {
 }
 
 exports.delete = (req,res,next) => {
-    res.status(200).send({message: "Succesfully deleted"})
+    Product.findByIdAndDelete(req.params.id
+    ).then(data => {res.status(200).send({message: "Produto Removido com Sucesso"})}).catch(e => {res.status(400).send({message: "Falha ao remover o produto", data:e})})
+}
+
+
+exports.put = (req,res,next) => {
+    Product.findByIdAndUpdate(req.params.id,{
+        $set: {
+            price:req.body.price,
+            name:req.body.name,
+            brand:req.body.brand,
+            size: req.body.size,
+            color: req.body.color,
+            stock: req.body.stock,
+            description: req.body.description
+        }
+    }).then(x => {res.status(201).send({message: "Produto Atualizado com Sucesso"})}).catch(e => {res.status(400).send({message: "Falha ao atualizar o produto", data:e})})
 }

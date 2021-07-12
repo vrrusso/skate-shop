@@ -12,7 +12,7 @@ const mongoose = require('mongoose')
 
 
 const uri = "mongodb+srv://admin_user:admin@cluster0.awwc2.mongodb.net/skate_shop";
-mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
+mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true,useFindAndModify: false })
 
 db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error:'));

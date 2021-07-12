@@ -10,8 +10,14 @@
  router.get('/name/:name',controller.getByName)
  router.get('/',controller.getAll)
  router.get('/id/:id',controller.getById)
+
+
  router.post('/',controller.post)
- router.delete('/:key_string',controller.delete)
+
+ router.put('/:id',controller.put)
+
+
+ router.delete('/:id',controller.delete)
   
   
   module.exports = router

@@ -61,6 +61,47 @@ var createProduct = async function(p) {
     
 }
 
+var updateProduct = async function(p) {
+    let resp = await fetch("http://localhost:3000/product/"+p.id,{
+                method:'PUT',
+                mode: 'cors',
+                cache:'no-cache',
+                credentials:'same-origin',
+                headers:{
+                  'Content-Type':'application/json'
+                },
+                redirect:'follow',
+                referrerPolicy: 'no-referrer',
+                body: JSON.stringify({
+                  price:p.price,
+                  name:p.name,
+                  brand:p.brand,
+                  size:p.size,
+                  color:p.color,
+                  stock:p.stock,
+                  description:p.description,
+                })
+              })
+    resp = await resp.json()
+    return resp
+}
+
+var removeProduct = async function(product_id) {
+    let resp = await fetch("http://localhost:3000/product/"+product_id,{
+                method:'DELETE',
+                mode: 'cors',
+                cache:'no-cache',
+                credentials:'same-origin',
+                headers:{
+                  'Content-Type':'application/json'
+                },
+                redirect:'follow',
+                referrerPolicy: 'no-referrer'
+              })
+    resp = await resp.json()
+    return resp
+}
+
 
 /**
  * 
@@ -113,4 +154,4 @@ var getProductById = async function(id){
 }
 
 
-export {fetchProductsByType,Product,fetchProductsByName,getProductById,createProduct}
+export {fetchProductsByType,Product,fetchProductsByName,getProductById,createProduct,updateProduct,removeProduct}

@@ -3,7 +3,7 @@
  */
 
 
-import {Product,getProductById} from './ProductController.js'
+import {Product,getProductById,updateProduct,removeProduct} from './ProductController.js'
 import { fillForm } from './ProductFormControl.js'
 import { displayProductsPage } from './RouteControl.js'
 import { displayCartPage } from './RouteControl.js'
@@ -11,14 +11,14 @@ import { displayCartPage } from './RouteControl.js'
 /**
  * based on the id passed on the request and the privilege of the user, get the details of products
  */
-var displayProduct = function(param){
+var displayProduct = async function(param){
     let user  = localStorage.privilege == undefined ? -1: localStorage.privilege
     switch(user){
         case '0':
             displayAdminView(param)
             break;
         default:
-            displayCostumerView(param)
+            await displayCostumerView(param)
             document.getElementById('add-btn').addEventListener('click',()=>{addToTheCart(param)})
     }
 }
@@ -87,8 +87,8 @@ function addToTheCart(product_id){
  * 
  * when the user is a costumer 
  */
-function displayCostumerView(id){
-    let product = getProductById(id)
+async function displayCostumerView(id){
+    let product = await getProductById(id)
     document.getElementById("product-name").innerHTML = product.name
     let layout = '<li>Marca: '+product.brand+'</li>'
     layout+='<li>Tamanho: '+product.size+'</li>'
@@ -122,8 +122,10 @@ async function displayAdminView(id){
     document.getElementById('product-img').innerHTML = '<img src="'+product.img_path+'" width="400">'
 
     //in the final project there will be a BD interaction here, for now it is just a mockup
-    document.getElementById('delete-link').addEventListener('click', ()=>{
-        alert("Produto Excluído com sucesso")
+    document.getElementById('delete-link').addEventListener('click', async ()=>{
+        let resp = await removeProduct(id)
+        alert(resp.message)
+        displayProductsPage("name","")
     })
 
     document.getElementById('edit-link').addEventListener('click', () => displayProductEditForm(id) )
@@ -143,11 +145,25 @@ async function displayProductEditForm(product_id){
     document.getElementById('profile-canvas-product-details').innerHTML = resp
 
     //fills the form with product data
-    fillForm(product_id)
+    await fillForm(product_id)
 
 
     //mockup behavior of editing a product
-    document.getElementById('btn-submit-edit-form').addEventListener('click',()=>{alert("Produto Alterado com Sucesso");displayProductsPage("name","")})
+    document.getElementById('btn-submit-edit-form').addEventListener('click',async ()=>{ 
+        let p = new Product(product_id,document.getElementById('price-input').value,
+  document.getElementById('name-input').value,
+  document.getElementById('brand-input').value,
+  'whatever',
+  document.getElementById('size-input').value,
+  document.getElementById('color-input').value,
+  document.getElementById('stock-input').value,
+  0,
+  document.getElementById('description-input').value,
+  "./img/roda.png"
+  )
+  let resp = await updateProduct(p)
+  alert(resp.message)
+        displayProductsPage("name","")})
 
 }
 

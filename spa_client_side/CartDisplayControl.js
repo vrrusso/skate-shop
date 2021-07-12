@@ -15,6 +15,7 @@ import { displayProductDetailsPage } from './ProductDisplayControl.js';
  */
 var  displayProductsCart = function(){
     const cart = JSON.parse(localStorage.getItem('cart'))
+    console.log(localStorage.getItem('cart'))
     let total=0;
     if(cart == undefined)
         return;

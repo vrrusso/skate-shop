@@ -10,8 +10,8 @@ document.addEventListener('DOMContentLoaded',fillForm)
 /**
  * fill the form with the current stored data
  */
-var fillForm = function(product_id) {
-    let product = getProductById(product_id)
+var fillForm = async function(product_id) {
+    let product = await getProductById(product_id)
     document.getElementById('price-input').value = product.price
     document.getElementById('name-input').value = product.name
     document.getElementById('brand-input').value = product.brand

@@ -143,7 +143,7 @@ async function displayUserFormPage(){
   displayUserDataForm();
 
   //just a mockup as there is no BD in the project
-  document.getElementById('btn-alter').addEventListener('click',displayProfilePage)
+  document.getElementById('btn-alter').addEventListener('click',)
 }
 
 
@@ -277,7 +277,7 @@ async function displayPaymentPage(){
       resp = await resp.text();
       document.getElementById('main-container').innerHTML = resp
       //display the user saved adress
-      displayUserAdress();
+      await displayUserAdress();
       
       //event to finish the purchase
       document.getElementById('purchase-button').addEventListener('click',finishPurchase)

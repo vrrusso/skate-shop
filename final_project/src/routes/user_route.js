@@ -7,5 +7,10 @@
  const controller = require('../controllers/user_controller')
  
  router.post('/',controller.post)
+ router.post('/login',controller.getUserByMailPassword)
+
+ router.get('/:id',controller.getById)
+
+ router.put('/:id',controller.updateById)
   
   module.exports = router

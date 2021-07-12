@@ -15,8 +15,8 @@ document.addEventListener('DOMContentLoaded', checkUser )
 /**
  * based on the current user, displays the data on the form
  */
-var displayUserDataForm = function(){
-    let user = getUserFromCurrentSession()
+var displayUserDataForm = async function(){
+    let user = await getUserFromCurrentSession()
     document.getElementById('user-name-input').value = user.name
     document.getElementById('user-email-input').value = user.email
     document.getElementById('user-tel-input').value = user.tel
@@ -35,10 +35,10 @@ var displayUserDataForm = function(){
 /**
  * based on the current user display the data in static fields
  */
-function displayUserData(){
+async function displayUserData(){
 
 
-    let user = getUserFromCurrentSession()
+    let user = await getUserFromCurrentSession()
     document.getElementById('user-name-span').innerHTML = user.name
     document.getElementById('user-email-span').innerHTML = user.email
     document.getElementById('user-tel-span').innerHTML = user.tel
@@ -56,28 +56,34 @@ function displayUserData(){
 /**
  * controls the login 
  */
-var login = function(){
+var login = async function(){
     const email = document.getElementById('email-login').value
     const password = document.getElementById('password').value
 
     
     if(email.includes('@') && email.includes('.')){
-        let auth = checkAuth(email, password)
+        let auth = await checkAuth(email, password)
         console.log(auth)
-        if(auth == 'user'){
-            localStorage.setItem('privilege','1')
-            localStorage.setItem('userId','2')
-            window.location.replace("./index.html")
-            
-        }
-        else if(auth == 'adm'){
-            localStorage.setItem('privilege','0')
-            localStorage.setItem('userId','1')
-            window.location.replace("./index.html")
+        if(auth.status == 200){
+            let data = await auth.json()
+            console.log(data)
+            alert(data.message)
+            if(data.data.privilege == 1){
+                localStorage.setItem('privilege','1')
+                localStorage.setItem('userId',data.data._id)
+                window.location.replace("./index.html")
+                
+            }
+            else if(data.data.privilege == 0){
+                localStorage.setItem('privilege','0')
+                localStorage.setItem('userId',data.data._id)
+                window.location.replace("./index.html")
+            }
         }
         else{
             alert("Email ou Senha incorreto!")
         }
+        
 
     }
 }
@@ -133,8 +139,8 @@ function checkUser( ){
 /**
  * displayUserAdress
  */
-var displayUserAdress = function(){
-    let user = getUserFromCurrentSession()
+var displayUserAdress = async function(){
+    let user = await getUserFromCurrentSession()
     document.getElementById('adress-input').innerHTML = '<input type="radio" name="address" id="adress-radio-option" value="'+user.address+','+user.city+','+user.cep+'" checked><label for="1">'+user.address+','+user.city+','+user.cep+'</label><br>'
 }
 

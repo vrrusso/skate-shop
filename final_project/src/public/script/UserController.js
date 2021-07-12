@@ -26,6 +26,7 @@ var createUser = async function(name,mail,phone,birth,cpf,address,cep,city,state
                 referrerPolicy: 'no-referrer',
                 body: JSON.stringify({
                   name:name,
+                  privilege: 1,
                   mail:mail,
                   phone:phone,
                   birth:birth,
@@ -81,27 +82,35 @@ const admin_user = new User('admin@skate.com','admin','Fabricio Hiromoto Chaves'
  * 
  * check if the user exists and if so,if it is a common user or admin user
  */
-var checkAuth = function(email,password){
-    if(email == regular_user.email && password == regular_user.password){
-       return 'user'
-    }
-
-    if(email == admin_user.email && password == admin_user.password){
-            return 'adm'
-    }
-
-    return 'guest'
+var checkAuth = async function(email,password){
+    let resp = await fetch("http://localhost:3000/user/login",{
+                method:'POST',
+                mode: 'cors',
+                cache:'no-cache',
+                credentials:'same-origin',
+                headers:{
+                  'Content-Type':'application/json'
+                },
+                redirect:'follow',
+                referrerPolicy: 'no-referrer',
+                body: JSON.stringify({
+                    mail:email,
+                    password:password
+                })
+              })
+    return resp
 }
 
 /**
  * checks if the logged in user is admin or common
  * 
  */
-var getUserFromCurrentSession = function(){
-    if(localStorage.userId == '2')
-        return regular_user
-    if(localStorage.userId == '1')
-        return admin_user
+var getUserFromCurrentSession = async function(){
+    let resp = await fetch("http://localhost:3000/user/"+localStorage.userId)
+    resp = await resp.json()
+    console.log(resp)
+    let u = new User(resp.data.mail,resp.data.password,resp.data.name,0,resp.data.phone,resp.data.birth,resp.data.cpf,resp.data.address,resp.data.cep,resp.data.city,resp.data.state,resp.data.base,resp.data.img_path)
+    return u
 }
 
 export { createUser, checkAuth, User,getUserFromCurrentSession}

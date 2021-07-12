@@ -9,15 +9,39 @@
 /**
  *  mockup function that returns true if the user is created
  */
-var createUser = function(name,mail,phone,birth,cpf,address,cep,city,state,base,password, repassword){
+var createUser = async function(name,mail,phone,birth,cpf,address,cep,city,state,base,password, repassword){
     if(name == "" || mail == "" || phone == "" || birth == "" || cpf == "" || address == "" || 
 	    cep == "" || city == "" || state == "" || base == "" || password == "" || repassword == ""){
          return -1;
     }
+    let resp = await fetch("http://localhost:3000/user/",{
+                method:'POST',
+                mode: 'cors',
+                cache:'no-cache',
+                credentials:'same-origin',
+                headers:{
+                  'Content-Type':'application/json'
+                },
+                redirect:'follow',
+                referrerPolicy: 'no-referrer',
+                body: JSON.stringify({
+                  name:name,
+                  mail:mail,
+                  phone:phone,
+                  birth:birth,
+                  cpf:cpf,
+                  address: address,
+                  cep:cep,
+                  city:city,
+                  state:state,
+                  base:base,
+                  password:password,
+                  img_path: './img/russo.jpg'
 
-    else{
-         return 0;
-    }
+                })
+              })
+    resp = await resp.json()
+    return resp
 }
 
 

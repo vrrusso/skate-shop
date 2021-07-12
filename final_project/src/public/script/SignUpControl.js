@@ -18,7 +18,7 @@ import  {createUser} from './UserController.js'
  * 
  *gets the user input, make consistencies checks and request the api to create the User on the DB
  */
-var  registerUser = function(){
+var  registerUser = async function(){
 
     //fazer consistências
     const name = document.getElementById('name').value
@@ -36,17 +36,15 @@ var  registerUser = function(){
 
     
 
-    let is_successful =  createUser(name,mail,phone,birth,cpf,address,cep,city,state,base,password,repassword)
+    let is_successful =  await createUser(name,mail,phone,birth,cpf,address,cep,city,state,base,password,repassword)
 
-    if(is_successful == 0){
-        alert("Conta Criada com Sucesso!")
-        window.location.replace("./index.html")
-    }
-    else if(is_successful == -1){
+
+
+    if(is_successful == -1){
         alert("Preencha todos os campos!")
     }
     else{
-        alert("Falha ao criar conta! Tente novamente!")
+        alert(is_successful.message)
     }
 
 

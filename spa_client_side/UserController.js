@@ -15,6 +15,8 @@ var createUser = function(name,mail,phone,birth,cpf,address,cep,city,state,base,
          return -1;
     }
 
+    
+
     else{
          return 0;
     }

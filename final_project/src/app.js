@@ -22,11 +22,13 @@ db.once('open', function() {
 
 //loading the models
 const Product = require('./models/product')
+const User = require('./models/user')
 
 
-const router = express.Router()
+
 const indexRoute = require('./routes/index')
 const productRoute = require('./routes/products_routes')
+const userRoute = require('./routes/user_route')
 
 
 app.use(bodyParser.json())
@@ -45,6 +47,7 @@ app.use(express.static('./src/resources'))
 
 app.use('/',indexRoute)
 app.use('/product',productRoute)
+app.use('/user',userRoute)
 
 
 module.exports = app

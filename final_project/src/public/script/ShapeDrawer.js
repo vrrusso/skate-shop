@@ -2,7 +2,6 @@
 var canvas
 var paint = false
 
-
 var displayCanvas = function () {
     canvas = document.getElementById('shape-canvas')
 
@@ -39,4 +38,20 @@ function draw(e){
 
 }
 
-export {displayCanvas}
+
+var downloadShapeImage = function(){
+
+
+    var wrapper = document.getElementById('wrapper')
+    html2canvas(wrapper,{
+        onrendered: function(canvas){
+            canvas.toBlob(function(blob){
+                saveAs(blob,'shape.jpg')
+            })
+        }
+    })
+
+
+}
+
+export {displayCanvas,downloadShapeImage}

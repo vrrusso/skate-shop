@@ -19,6 +19,8 @@ import {Product,createProduct} from './ProductController.js'
 
 import {getUserPrivilege} from './UserController.js'
 
+import {displayCanvas} from './ShapeDrawer.js'
+
 
 
 /**
@@ -240,6 +242,8 @@ async function displayShapeDrawerPage(){
     resp = await resp.text();
 
     document.getElementById("main-container").innerHTML = resp;
+
+    displayCanvas()
 
 }
 

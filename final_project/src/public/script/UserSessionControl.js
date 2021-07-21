@@ -24,12 +24,14 @@ var displayUserDataForm = async function(){
     document.getElementById('user-cpf-input').value = user.cpf
     document.getElementById('user-address-input').value = user.address
     document.getElementById('user-cep-input').value = user.cep
-    document.getElementById('user-city-input').value = user.city
     document.getElementById('user-state-input').value = user.state
+    document.getElementById('user-city-input').value = user.city
+    document.getElementById('img-path-input').value = user.img_path
     if(user.base == "Regular")
         document.getElementById("user-base-select").selectedIndex = "0"
     else
         document.getElementById("user-base-select").selectedIndex = "1"  
+    document.getElementById('img-profile').src = user.img_path
 }
 
 /**

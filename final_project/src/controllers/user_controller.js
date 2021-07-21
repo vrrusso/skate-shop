@@ -49,7 +49,8 @@
             cep: req.body.cep,
             city: req.body.city,
             state: req.body.state,
-            base: req.body.base
+            base: req.body.base,
+            img_path:req.body.img_path
 
         }
     }).then(x => {res.status(200).send({message: "Usuário Atualizado com Sucesso"})}).catch(e => {res.status(400).send({message: "Falha ao atualizar o usuário", data:e})})

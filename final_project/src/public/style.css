@@ -214,3 +214,6 @@ body{
     border:solid;
 }
 
+img{
+    object-fit: cover;
+}

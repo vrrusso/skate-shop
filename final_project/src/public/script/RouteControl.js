@@ -170,6 +170,7 @@ async function displayUserFormPage(){
                   city:document.getElementById('user-city-input').value,
                   state:document.getElementById('user-state-input').value,
                   base:document.getElementById('user-base-select').value,
+                  img_path:document.getElementById('img-path-input').value
 
                 })
               })
@@ -347,7 +348,7 @@ async function saveProduct(){
   document.getElementById('stock-input').value,
   0,
   document.getElementById('description-input').value,
-  "./img/roda.png"
+  document.getElementById('img-path-input').value
   )
   let resp = await createProduct(p)
   alert(resp.message)

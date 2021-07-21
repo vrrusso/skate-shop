@@ -33,7 +33,7 @@ function setLayout(products){
         layout+='<div class="central-container-text"></div>'
         layout+='<div class="central-container-footer"><a href="#" id="'+product.id+'-link" class="central-link">'+link_text+'</a><span class="price-tag">$'+product.price+'</span></div>'
         layout+='</div>'
-        layout+='<div class="central-container-img"><img src="'+product.img_path+'" width="180px"></div>'
+        layout+='<div class="central-container-img"><img src="'+product.img_path+'" width="180px" height="180px"></div>'
         layout+='</div>'
         layout+='</div>'
     })

@@ -65,7 +65,8 @@ exports.put = (req,res,next) => {
             size: req.body.size,
             color: req.body.color,
             stock: req.body.stock,
-            description: req.body.description
+            description: req.body.description,
+            img_path:req.body.img_path
         }
     }).then(x => {res.status(201).send({message: "Produto Atualizado com Sucesso"})}).catch(e => {res.status(400).send({message: "Falha ao atualizar o produto", data:e})})
 }

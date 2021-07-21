@@ -22,6 +22,8 @@ var fillForm = async function(product_id) {
     document.getElementById('sold-input').value = product.sold
     document.getElementById('description-input').value = product.description
 
+    document.getElementById('img-path-input').value = product.img_path
+
     document.getElementById('img-product').src = product.img_path
 
 }

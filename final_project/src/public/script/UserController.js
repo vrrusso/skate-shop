@@ -37,7 +37,7 @@ var createUser = async function(name,mail,phone,birth,cpf,address,cep,city,state
                   state:state,
                   base:base,
                   password:password,
-                  img_path: './img/russo.jpg'
+                  img_path: 'https://www.nicepng.com/png/detail/1011-10113425_profile-clipart-generic-user-circle.png'
 
                 })
               })

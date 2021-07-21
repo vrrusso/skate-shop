@@ -97,7 +97,7 @@ async function displayCostumerView(id){
     document.getElementById('product-details-list').innerHTML = layout
     document.getElementById('product-price').innerHTML = '$'+product.price
     document.getElementById('actions-product-details').innerHTML = '<form onsubmit="return false;">Quantidade:<input value="1" id="qtd" type="number"><br><button id="add-btn" class="btn search" style="margin-top: 5px;">Adcionar ao Carrinho</button></form>'
-    document.getElementById('product-img').innerHTML = '<img src="'+product.img_path+'" width="400">'
+    document.getElementById('product-img').innerHTML = '<img src="'+product.img_path+'" width="400" height="400">'
     
 }
 
@@ -119,7 +119,7 @@ async function displayAdminView(id){
     document.getElementById('product-price').innerHTML = '$'+ product.price
     document.getElementById('actions-product-details').innerHTML = '<a href="#" id="edit-link" class="central-link">Editar</a><a href="#" id="delete-link" class="central-link">Excluir Produto</a>'
 
-    document.getElementById('product-img').innerHTML = '<img src="'+product.img_path+'" width="400">'
+    document.getElementById('product-img').innerHTML = '<img src="'+product.img_path+'" width="400" height="400">'
 
     //in the final project there will be a BD interaction here, for now it is just a mockup
     document.getElementById('delete-link').addEventListener('click', async ()=>{
@@ -159,7 +159,7 @@ async function displayProductEditForm(product_id){
   document.getElementById('stock-input').value,
   0,
   document.getElementById('description-input').value,
-  "./img/roda.png"
+  document.getElementById('img-path-input').value
   )
   let resp = await updateProduct(p)
   alert(resp.message)

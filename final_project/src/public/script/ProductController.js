@@ -80,6 +80,7 @@ var updateProduct = async function(p) {
                   color:p.color,
                   stock:p.stock,
                   description:p.description,
+                  img_path:p.img_path
                 })
               })
     resp = await resp.json()

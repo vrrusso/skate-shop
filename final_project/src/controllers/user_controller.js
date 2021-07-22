@@ -21,7 +21,9 @@
          if(data == null){
             res.status(400).send({message: "Falha na Autenticação"})
          }
-         res.status(200).send({data:data,message:"Login concluído com sucesso"})
+         else{
+            res.status(200).send({data:data,message:"Login concluído com sucesso"})
+         }
      }).catch(e => {res.status(400).send({message:"Falha no sistema"})})
  }
 

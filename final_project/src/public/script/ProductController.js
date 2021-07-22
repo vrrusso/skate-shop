@@ -147,8 +147,9 @@ var fetchProductsByName = async function(name){
 //return a product based on his id
 var getProductById = async function(id){
     let resp = await fetch("http://localhost:3000/product/id/"+id)
+    if(resp.status == 400)
+      return null
     let b = await resp.json()
-    //console.log(b)
     let p = new Product(b._id,b.price,b.name,b.brand,b.type,b.size,b.color,b.stock,b.sold,b.description,b.img_path)
     console.log(p)
     return p

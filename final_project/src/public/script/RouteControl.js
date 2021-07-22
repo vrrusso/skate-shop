@@ -31,7 +31,7 @@ document.getElementById("profile-link").addEventListener('click', displayProfile
 /**
  * link to the main page
  */
-document.getElementById("index-link").addEventListener('click',displayIndexPage)
+document.getElementById("index-link").addEventListener('click',()=>{displayIndexPage()})
 
 /**
  * link to the about page
@@ -192,6 +192,8 @@ async function displayUserFormPage(){
  * this function is responsible for showing the index page
  */
 var displayIndexPage = async function(){
+
+    
     document.getElementById(current_state+"-link").style.color = inactive_color
     document.getElementById("index-link").style.color = active_color
     current_state = "index"

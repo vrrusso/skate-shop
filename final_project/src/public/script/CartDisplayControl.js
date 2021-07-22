@@ -16,72 +16,51 @@ import { displayProductDetailsPage } from './ProductDisplayControl.js';
 var  displayProductsCart = async function(){
     const cart = JSON.parse(localStorage.getItem('cart'))
     let total=0;
-    console.log(cart)
     if(cart == undefined)
         return;
     for(const obj of cart.cart){
         const product = await getProductById(obj.product_id)
-        if(product == null){
-            alert("oi")
+        if(product != null){
+            total+=product.price*obj.qtd
+            let layout = ""
+            layout+= '<div class="central" id="'+obj.product_id+'">'
+            layout+='<div class="central-title">'
+            layout+='<h3 class="central-text-title">'+product.name+'</h3>'
+            layout+='</div>'
+            layout+='<div class="central-container">'
+            layout+='<div class="central-anchor-left">'
+            layout+='<div class="central-container-text">'
+            layout+='</div>'
+            layout+='<div class="central-container-footer">'
+            layout+='<span class="cart-info">Qtd.: '+obj.qtd+'</span>'
+            layout+='<span class="cart-info">Preço: $'+ product.price+'</span>'
+            layout+='<span class="cart-info">Valor: $'+product.price*obj.qtd+'</span>'
+            layout+='<a href="#" id="edit-'+obj.product_id+'" class="central-link">Editar</a><a id="remove-'+obj.product_id+'" class="central-link">Remover</a>'
+            layout+='</div>'
+            layout+='</div>'
+            layout+='<div class="central-container-img"><img src="'+product.img_path+'" width="180px" height="180px"></div>'
+            layout+='</div>'
+            layout+='</div>'
+            document.getElementById('products-cart-container').innerHTML += layout
         }
-        total+=product.price*obj.qtd
-        let layout = ""
-        layout+= '<div class="central" id="'+obj.product_id+'">'
-        layout+='<div class="central-title">'
-        layout+='<h3 class="central-text-title">'+product.name+'</h3>'
-        layout+='</div>'
-        layout+='<div class="central-container">'
-        layout+='<div class="central-anchor-left">'
-        layout+='<div class="central-container-text">'
-        layout+='</div>'
-        layout+='<div class="central-container-footer">'
-        layout+='<span class="cart-info">Qtd.: '+obj.qtd+'</span>'
-        layout+='<span class="cart-info">Preço: $'+ product.price+'</span>'
-        layout+='<span class="cart-info">Valor: $'+product.price*obj.qtd+'</span>'
-        layout+='<a href="#" id="edit-'+obj.product_id+'" class="central-link">Editar</a><a id="remove-'+obj.product_id+'" class="central-link">Remover</a>'
-        layout+='</div>'
-        layout+='</div>'
-        layout+='<div class="central-container-img"><img src="'+product.img_path+'" width="180px"></div>'
-        layout+='</div>'
-        layout+='</div>'
-        document.getElementById('products-cart-container').innerHTML += layout
     }
-    /*cart.cart.forEach(obj =>{
-        const product = await getProductById(obj.product_id)
-        total+=product.price*obj.qtd
-        let layout = ""
-        layout+= '<div class="central" id="'+obj.product_id+'">'
-        layout+='<div class="central-title">'
-        layout+='<h3 class="central-text-title">'+product.name+'</h3>'
-        layout+='</div>'
-        layout+='<div class="central-container">'
-        layout+='<div class="central-anchor-left">'
-        layout+='<div class="central-container-text">'
-        layout+='</div>'
-        layout+='<div class="central-container-footer">'
-        layout+='<span class="cart-info">Qtd.: '+obj.qtd+'</span>'
-        layout+='<span class="cart-info">Preço: $'+ product.price+'</span>'
-        layout+='<span class="cart-info">Valor: $'+product.price*obj.qtd+'</span>'
-        layout+='<a href="#" id="edit-'+obj.product_id+'" class="central-link">Editar</a><a id="remove-'+obj.product_id+'" class="central-link">Remover</a>'
-        layout+='</div>'
-        layout+='</div>'
-        layout+='<div class="central-container-img"><img src="'+product.img_path+'" width="180px"></div>'
-        layout+='</div>'
-        layout+='</div>'
-        document.getElementById('products-cart-container').innerHTML += layout
-
-    })*/
 
 
 
 
     for(let i=0;i<cart.cart.length;i++){
-        //event to remove item from the cart
-        document.getElementById('remove-'+cart.cart[i].product_id).addEventListener('click',()=>{removeProduct(cart.cart[i].product_id,i,total)})
+
+        let insert = document.getElementById('remove-'+cart.cart[i].product_id)
+        let edit = document.getElementById('edit-'+cart.cart[i].product_id)
+
+        if(insert != null)
+            //event to remove item from the cart
+            document.getElementById('remove-'+cart.cart[i].product_id).addEventListener('click',()=>{removeProduct(cart.cart[i].product_id,i,total)})
         
         //event to edit some product
-        //the product screen will come up        
-        document.getElementById('edit-'+cart.cart[i].product_id).addEventListener('click',()=>{displayProductDetailsPage(cart.cart[i].product_id)})
+        //the product screen will come up   
+        if(edit!= null)     
+            document.getElementById('edit-'+cart.cart[i].product_id).addEventListener('click',()=>{displayProductDetailsPage(cart.cart[i].product_id)})
     }
 
     document.getElementById('total-value').innerHTML = "Valor Total: $"+total

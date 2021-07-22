@@ -314,6 +314,23 @@ var displayCartPage = async function(){
  */
 async function displayPaymentPage(){
   let user  = localStorage.privilege == undefined ? "-1": localStorage.privilege
+  let total = 0
+
+  const cart = JSON.parse(localStorage.getItem('cart'))
+  if(cart == null){
+    alert("Adcione algum item no carrinho para finalizar a compra!")
+    return
+  }
+  for(const obj of cart.cart){
+    const product = await getProductById(obj.product_id)
+    if(product != null){
+      total = product.price*obj.qtd
+    }
+  }
+  if(total<=0){
+    alert("Adcione algum item no carrinho para finalizar a compra!")
+    return
+  }
   switch (user){
     //if the user is a guest, the user has to create an account to finish purchase
     case "-1": alert("Execute Login para finalizar sua compra!"); displayProfilePage()

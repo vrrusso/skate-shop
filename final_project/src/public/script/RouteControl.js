@@ -191,7 +191,7 @@ async function displayUserFormPage(){
 /**
  * this function is responsible for showing the index page
  */
-async function displayIndexPage(){
+var displayIndexPage = async function(){
     document.getElementById(current_state+"-link").style.color = inactive_color
     document.getElementById("index-link").style.color = active_color
     current_state = "index"
@@ -356,5 +356,5 @@ async function saveProduct(){
   
 }
 
-export {displayProductsPage,displayCartPage}
+export {displayProductsPage,displayCartPage,displayIndexPage}
 

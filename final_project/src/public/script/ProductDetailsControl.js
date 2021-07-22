@@ -5,7 +5,7 @@
 
 import {Product,getProductById,updateProduct,removeProduct} from './ProductController.js'
 import { fillForm } from './ProductFormControl.js'
-import { displayProductsPage } from './RouteControl.js'
+import { displayProductsPage,displayIndexPage } from './RouteControl.js'
 import { displayCartPage } from './RouteControl.js'
 
 /**
@@ -163,7 +163,13 @@ async function displayProductEditForm(product_id){
   )
   let resp = await updateProduct(p)
   alert(resp.message)
-        displayProductsPage("name","")})
+
+
+  //displayProductsPage("name","")
+    displayIndexPage()
+    }
+        
+  )
 
 }
 

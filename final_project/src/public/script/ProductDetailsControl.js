@@ -76,6 +76,22 @@ async function addToTheCart(product_id){
         console.log(JSON.parse(localStorage.cart))
     }
 
+    await fetch("http://localhost:3000/product/pay/"+product.id,{
+        method:'PUT',
+        mode: 'cors',
+        cache:'no-cache',
+        credentials:'same-origin',
+        headers:{
+          'Content-Type':'application/json'
+        },
+        redirect:'follow',
+        referrerPolicy: 'no-referrer',
+        body: JSON.stringify({
+          sold:product.sold+parseInt(obj.qtd)
+        })
+    })
+    
+
     //calls the cart page
     displayCartPage()
     

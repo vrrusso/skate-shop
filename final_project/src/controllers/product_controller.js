@@ -70,3 +70,16 @@ exports.put = (req,res,next) => {
         }
     }).then(x => {res.status(201).send({message: "Produto Atualizado com Sucesso"})}).catch(e => {res.status(400).send({message: "Falha ao atualizar o produto", data:e})})
 }
+
+
+exports.updateProductSold = (req,res,next) =>{
+    Product.findByIdAndUpdate(req.params.id,{
+        $set:{
+            sold: req.body.sold
+        }
+    }).then(x => res.status(201).send({message: "Produto Atualizado com Sucesso"}))
+    .catch(e =>{
+        res.status(400).send({message: "Falha ao atualizar o produto", data:e})
+        
+    })
+}

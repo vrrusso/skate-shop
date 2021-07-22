@@ -16,6 +16,8 @@
 
  router.put('/:id',controller.put)
 
+ router.put('/pay/:id',controller.updateProductSold)
+
 
  router.delete('/:id',controller.delete)
   

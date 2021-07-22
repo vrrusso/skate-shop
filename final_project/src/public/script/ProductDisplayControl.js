@@ -31,7 +31,15 @@ function setLayout(products){
         layout+='<div class="central-container">'
         layout+='<div class="central-anchor-left">'
         layout+='<div class="central-container-text"></div>'
-        layout+='<div class="central-container-footer"><a href="#" id="'+product.id+'-link" class="central-link">'+link_text+'</a><span class="price-tag">$'+product.price+'</span></div>'
+        if(user == '0'){
+            layout+='<div class="central-container-footer"><a href="#" id="'+product.id+'-link" class="central-link">Ver</a><span class="price-tag">$'+product.price+'</span></div>'
+        }
+        else{
+            if(product.stock - product.sold > 0)
+                layout+='<div class="central-container-footer"><a href="#" id="'+product.id+'-link" class="central-link">Comprar</a><span class="price-tag">$'+product.price+'</span></div>'
+            else
+                layout+='<div class="central-container-footer"><span class="price-tag">Fora de Estoque  $'+product.price+'</span></div>'
+        }
         layout+='</div>'
         layout+='<div class="central-container-img"><img src="'+product.img_path+'" width="180px" height="180px"></div>'
         layout+='</div>'
@@ -66,6 +74,7 @@ var displayProductsByType = async function(type){
 //set the events for each product
 function setEvents(products){
     products.forEach(product => {
+        if(product.stock-product.sold > 0)
         document.getElementById(product.id+'-link').addEventListener('click',() => displayProductDetailsPage(product.id))
     })
 }

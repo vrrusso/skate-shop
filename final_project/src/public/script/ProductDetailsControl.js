@@ -24,12 +24,11 @@ var displayProduct = async function(param){
 }
 
 //add a product to the cart
-function addToTheCart(product_id){
+async function addToTheCart(product_id){
     let qtd = document.getElementById('qtd').value
 
-    const product = getProductById(product_id)
+    const product = await getProductById(product_id)
     
-
     if(product.stock-product.sold-qtd <=0){
         alert("Não há itens suficiente no estoque para essa venda! ")
         return;

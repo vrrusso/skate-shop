@@ -206,10 +206,10 @@ body{
 .shape{
     margin:auto;
     margin-top:5%;
-    /*background-color: blue;*/
+    background-color: white;
     width:55%;
     height:40%;
-    /*border-radius: 30%;*/
+    border-radius: 30%;
     border:3px;
     border:solid;
 }

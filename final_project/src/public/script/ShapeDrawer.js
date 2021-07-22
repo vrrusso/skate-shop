@@ -42,7 +42,7 @@ function draw(e){
 var downloadShapeImage = function(){
 
 
-    var wrapper = document.getElementById('wrapper')
+    var wrapper = document.getElementById('shape-canvas')
     html2canvas(wrapper,{
         onrendered: function(canvas){
             canvas.toBlob(function(blob){

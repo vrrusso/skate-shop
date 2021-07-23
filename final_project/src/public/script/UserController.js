@@ -10,10 +10,6 @@
  *  mockup function that returns true if the user is created
  */
 var createUser = async function(name,mail,phone,birth,cpf,address,cep,city,state,base,password, repassword){
-    if(name == "" || mail == "" || phone == "" || birth == "" || cpf == "" || address == "" || 
-	    cep == "" || city == "" || state == "" || base == "" || password == "" || repassword == ""){
-         return -1;
-    }
     let resp = await fetch("http://localhost:3000/user/",{
                 method:'POST',
                 mode: 'cors',
@@ -41,7 +37,6 @@ var createUser = async function(name,mail,phone,birth,cpf,address,cep,city,state
 
                 })
               })
-    resp = await resp.json()
     return resp
 }
 

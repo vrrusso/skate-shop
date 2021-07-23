@@ -34,7 +34,9 @@
         if(data == null){
             res.status(400).send({message: "Falha ao Procurar Usuário"})
          }
+         else {
          res.status(200).send({data:data})
+         }
      }).catch(e => {res.status(400).send({message:"Falha no sistema"})})
  }
 
@@ -43,7 +45,6 @@
     User.findByIdAndUpdate(req.params.id,{
         $set: {
             name:req.body.name,
-            mail:req.body.mail,
             phone:req.body.phone,
             birth:req.body.birth,
             cpf:req.body.cpf,

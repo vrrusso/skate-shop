@@ -148,6 +148,67 @@ async function displayUserFormPage(){
 
   //just a mockup as there is no BD in the project
   document.getElementById('btn-alter').addEventListener('click',async ()=>{
+
+
+    const name = document.getElementById('user-name-input').value
+    const phone = document.getElementById('user-tel-input').value
+    const birth = document.getElementById('user-birthday-input').value
+    const cpf = document.getElementById('user-cpf-input').value
+    const address = document.getElementById('user-address-input').value
+    const cep = document.getElementById('user-cep-input').value
+    const city = document.getElementById('user-city-input').value
+    const state = document.getElementById('user-state-input').value
+    const base = document.getElementById('user-base-select').value
+    const img_path = document.getElementById('img-path-input').value
+
+    if(name.trim() == '' ){
+      alert("O campo nome deve ser preenchido!")
+      return
+  }
+
+
+  if(phone.trim() == '' ){
+      alert("O campo telefone deve ser preenchido!")
+      return
+  }
+
+  if(birth.trim() == '' ){
+      alert("O campo data de nascimento deve ser preenchido!")
+      return
+  }
+
+  if(parseInt(birth.substring(0,4)) > 2007){
+      alert("O ano de nascimento deve ser anterior a 2008")
+      return
+  }
+
+  if(cpf.trim() == '' ){
+      alert("O campo cpf deve ser preenchido!")
+      return
+  }
+
+  if(address.trim() == '' ){
+      alert("O campo endereço deve ser preenchido!")
+      return
+  }
+
+  if(cep.trim() == '' ){
+      alert("O campo cep deve ser preenchido!")
+      return
+  }
+
+  if(city.trim() == '' ){
+      alert("O campo cidade deve ser preenchido!")
+      return
+  }
+
+  if(state.trim() == '' ){
+      alert("O campo estado deve ser preenchido!")
+      return
+  }
+
+
+
     let id = localStorage.userId
     let resp = await fetch("http://localhost:3000/user/"+id,{
                 method:'PUT',
@@ -160,17 +221,16 @@ async function displayUserFormPage(){
                 redirect:'follow',
                 referrerPolicy: 'no-referrer',
                 body: JSON.stringify({
-                  name:document.getElementById('user-name-input').value,
-                  mail:document.getElementById('user-email-input').value,
-                  phone:document.getElementById('user-tel-input').value,
-                  birth:document.getElementById('user-birthday-input').value,
-                  cpf:document.getElementById('user-cpf-input').value,
-                  address: document.getElementById('user-address-input').value,
-                  cep:document.getElementById('user-cep-input').value,
-                  city:document.getElementById('user-city-input').value,
-                  state:document.getElementById('user-state-input').value,
-                  base:document.getElementById('user-base-select').value,
-                  img_path:document.getElementById('img-path-input').value
+                  name:name,
+                  phone:phone,
+                  birth:birth,
+                  cpf:cpf,
+                  address: address,
+                  cep: cep,
+                  city: city,
+                  state: state,
+                  base: base,
+                  img_path: img_path
 
                 })
               })
@@ -351,6 +411,10 @@ async function displayPaymentPage(){
 
 //mockup behavior of finishing the purchase
 function finishPurchase(){
+  if(document.getElementById('credit-no').value.trim() == "" ){
+    alert("Digite um número de Cartão!")
+    return
+  }
   alert("Compra Concluída com sucesso!")
   localStorage.removeItem('cart')
   displayIndexPage()

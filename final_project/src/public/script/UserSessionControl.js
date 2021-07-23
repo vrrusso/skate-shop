@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', checkUser )
 var displayUserDataForm = async function(){
     let user = await getUserFromCurrentSession()
     document.getElementById('user-name-input').value = user.name
-    document.getElementById('user-email-input').value = user.email
     document.getElementById('user-tel-input').value = user.tel
     document.getElementById('user-birthday-input').value = user.birthday
     document.getElementById('user-cpf-input').value = user.cpf
@@ -62,8 +61,17 @@ var login = async function(){
     const email = document.getElementById('email-login').value
     const password = document.getElementById('password').value
 
+    if(!email.includes('@') || !email.includes('.')){
+        alert("Insira um Email Válido!")
+        return
+    }
+
+    if(password == ""){
+        alert("Digite uma Senha!")
+        return
+    }
+
     
-    if(email.includes('@') && email.includes('.')){
         let auth = await checkAuth(email, password)
         console.log(auth)
         if(auth.status == 200){
@@ -86,8 +94,6 @@ var login = async function(){
             alert("Email ou Senha incorreto!")
         }
         
-
-    }
 }
 
 /**

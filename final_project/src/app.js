@@ -18,6 +18,7 @@ db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
     console.log("Connected to MongoBD")
+    console.log("http://localhost:3000/")
 });
 
 //loading the models

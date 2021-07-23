@@ -73,9 +73,10 @@ var displayProductsByType = async function(type){
 
 //set the events for each product
 function setEvents(products){
+    let user  = localStorage.privilege == undefined ? -1: localStorage.privilege
     products.forEach(product => {
-        if(product.stock-product.sold > 0)
-        document.getElementById(product.id+'-link').addEventListener('click',() => displayProductDetailsPage(product.id))
+        if(product.stock-product.sold > 0 || user == '0')
+            document.getElementById(product.id+'-link').addEventListener('click',() => displayProductDetailsPage(product.id))
     })
 }
 

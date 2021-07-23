@@ -39,7 +39,6 @@ const schema = new Schema({
     },
     description:{
         type:String,
-        required:true
     },
     img_path:{
         type:String,

@@ -29,7 +29,7 @@ async function addToTheCart(product_id){
 
     const product = await getProductById(product_id)
     
-    if(product.stock-product.sold-qtd <=0){
+    if(product.stock-product.sold-qtd <0){
         alert("Não há itens suficiente no estoque para essa venda! ")
         return;
     }
@@ -165,17 +165,69 @@ async function displayProductEditForm(product_id){
 
     //mockup behavior of editing a product
     document.getElementById('btn-submit-edit-form').addEventListener('click',async ()=>{ 
-        let p = new Product(product_id,document.getElementById('price-input').value,
-  document.getElementById('name-input').value,
-  document.getElementById('brand-input').value,
-  'whatever',
-  document.getElementById('size-input').value,
-  document.getElementById('color-input').value,
-  document.getElementById('stock-input').value,
-  0,
-  document.getElementById('description-input').value,
-  document.getElementById('img-path-input').value
-  )
+        const price =  document.getElementById('price-input').value
+        const name = document.getElementById('name-input').value
+        const brand = document.getElementById('brand-input').value
+        const size = document.getElementById('size-input').value
+        const color = document.getElementById('color-input').value
+        const stock = document.getElementById('stock-input').value
+        const description = document.getElementById('description-input').value
+        const img_path = document.getElementById('img-path-input').value
+      
+      
+        if(price.trim() == ''){
+          alert("O campo preço deve ser preenchido!")
+          return
+        }
+        if(parseFloat(price) <= 0){
+          alert("O valor de preço deve ser maior que zero!")
+          return
+        }
+      
+        if(name.trim() == ''){
+          alert("O campo nome deve ser preenchido!")
+          return
+        }
+      
+        if(brand.trim() == ''){
+          alert("O campo marca deve ser preenchido!")
+          return
+        }
+      
+        if(size.trim() == ''){
+          alert("O campo tamanho deve ser preenchido!")
+          return
+        }
+        if(parseFloat(size) <= 0){
+          alert("O valor de tamanho deve ser maior que zero!")
+          return
+        }
+      
+        if(stock.trim() == ''){
+          alert("O campo quantidade em estoque deve ser preenchido!")
+          return
+        }
+        if(parseInt(stock) < 1){
+          alert("A quantidade em estoque deve ser maior que zero!")
+          return
+        }
+      
+        if(img_path.trim() == ''){
+          alert("O campo caminho da imagem deve ser preenchido!")
+          return
+        }
+
+        let p = new Product(product_id,price,
+            name,
+            brand,
+            "whatever",
+            size,
+            color,
+            stock,
+            0,
+            description,
+            img_path
+            )
   let resp = await updateProduct(p)
   alert(resp.message)
 

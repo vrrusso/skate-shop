@@ -148,7 +148,7 @@ Explore the form consistency trying to make the login without typing the passwor
 
 ### Create an Account
 
-Create an Account. Explore the form consistency for the email( barely done), and birthday. 
+Create an Account. Explore the form consistency for the email( barely done), birthday, and short password. 
 
 See in the BD that the new user is created. 
 
@@ -197,100 +197,169 @@ Use your criativity and draw a pattern on shape drawer and then download the png
 
 In this section we will detail all the tests performed on the topics described presented in the Project Description section.
 
-### Sign Up
-
-![screenshot](https://i.imgur.com/r7Wricf.png)
-
-![screenshot](https://i.imgur.com/HRrr4u3.png)
-
-### Login
-
-Home before login
-
-![screenshot](https://i.imgur.com/76dNImj.png)
-
-Wrong login
-
-![screenshot](https://i.imgur.com/20m06qp.png)
-
-Home after successful login
-
-![screenshot](https://i.imgur.com/5LNIOCn.png)
-
-Its possible to login as user with:
-
-```
-  email: victor@russo.com
-  password: senha123
-```
-
-### Search Products
-
-Searching for "crail promodel"
-
-![screenshot](https://i.imgur.com/LcPmaRB.png)
-
-Result of products available at the skate shop related to the search
-
-![screenshot](https://i.imgur.com/SLX9rHl.png)
-
-### Cart
-
-It is possible to add the desired products to the cart.
-
-![screenshot](https://i.imgur.com/uywq8eN.png)
-
-It is also possible to edit and remove products from the cart.
-
-![screenshot](https://i.imgur.com/qtZK4we.png)
-
-![screenshot](https://i.imgur.com/7jz6SVF.png)
-
-Specifying the delivery address and finishing the purchase of the entire cart.
-
-![screenshot](https://i.imgur.com/FhBUlvm.png)
-
-![screenshot](https://i.imgur.com/Yk1uydc.png)
-
-### Logout
-
-![screenshot](https://i.imgur.com/BFy9vkC.png)
-
-### Login verification
-
-It is important to ensure that the user is logged in to make a purchase.
-
-![screenshot](https://i.imgur.com/nylN0o1.png)
-
-### Add new products (Admin)
-
-Its possible to login as admin with:
-
-```
-  email: skate@skate.com
-  password: admin
-```
-
-On the home page menu, there is a section to add a new product in the skate shop catalog.
-
-![screenshot](https://i.imgur.com/qoKKAt1.png)
-
-Registering a new product
-
-![screenshot](https://i.imgur.com/sobyPZ0.png)
-
-![screenshot](https://i.imgur.com/KIv0ljT.png)
+### Browsing the SPA
 
 
-### Edit Products
+### Filter products by type
+Filter by shapes
+![screenshot](https://i.imgur.com/sDBfK6E.png)
 
-Admin can also change some specifications of the products that already exist in the skate shop catalog.
+### Filtering Product by Name
+Filter by the product name truck
+![screenshot](https://i.imgur.com/9anhkzS.png)
 
-![screenshot](https://i.imgur.com/ieH3mHL.png)
+### Adding Items to the Cart
+Screen to buy 1 truck
+![screenshot](https://i.imgur.com/7YtD9M1.png)
 
-![screenshot](https://i.imgur.com/0JX0dWa.png)
+Screen with the item in the cart
+![screenshot](https://i.imgur.com/69lpLGm.png)
 
-![screenshot](https://i.imgur.com/zTiPEGv.png)
+Screen with a lot of itens in the cart
+![screenshot](https://i.imgur.com/wcZAvAS.png)
+
+Message saying that there aren't enough itens in the stock
+
+
+![screenshot](https://i.imgur.com/O0ndTHs.png)
+
+### Removing Items of the Cart
+Initially there are 2 items in the cart, totalizing $63
+![screenshot](https://i.imgur.com/ACbYBu6.png)
+
+Truck removed, remaining only the wheel, totalizing $13
+![screenshot](https://i.imgur.com/BhCakeq.png)
+
+### Edit Products of the Cart
+Item in the cart before edit (only 1 wheel)
+![screenshot](https://i.imgur.com/m5nzEYc.png)
+
+Edit screen to increase the quantity of wheels
+![screenshot](https://i.imgur.com/rhaSva7.png)
+
+Item in the cart before increase the amount of wheels (now 3 wheels)
+![screenshot](https://i.imgur.com/ZtOdLg5.png)
+
+### Log in
+First, login with an illegal account
+
+![screenshot](https://i.imgur.com/Mys4p6B.png)
+
+Illegal account error
+
+
+
+![screenshot](https://i.imgur.com/NGFvTvT.png)
+
+Legal account login
+
+![screenshot](https://i.imgur.com/7DjDVmy.png)
+
+Success login message
+
+
+
+![screenshot](https://i.imgur.com/f2gG6eP.png)
+
+
+### Create an Account
+Register with a birthday after 2008
+
+![screenshot](https://i.imgur.com/AXRbZ0Q.png)
+
+Error message
+
+
+![screenshot](https://i.imgur.com/pfxaRnT.png)
+
+Register with a short password
+![screenshot](https://i.imgur.com/9Ss9ySl.png)
+
+Error message
+
+
+![screenshot](https://i.imgur.com/w9YDAsA.png)
+
+Register with an invalid e-mail
+
+![screenshot](https://i.imgur.com/ZuDNiIN.png)
+
+Error message
+
+
+![screenshot](https://i.imgur.com/Ax32rPx.png)
+
+
+Successful register
+
+![screenshot](https://i.imgur.com/NDQK5li.png)
+
+Success message
+
+
+![screenshot](https://i.imgur.com/9IiiVyt.png)
+
+OBS: The login showed in the login topic was already with the new account, so there is no print with a sucessful login with a new account in this topic
+
+### See Profile Page
+Profile page of the new account
+
+![screenshot](https://i.imgur.com/S1QUTFp.png)
+
+### Updating User Info
+Infos before editing
+
+![screenshot](https://i.imgur.com/9x2NHSM.png)
+
+Profile edit page without profile image and old birthday date
+
+![screenshot](https://i.imgur.com/7XMelK6.png)
+
+Profile edit page after changing birthday and profile image
+
+![screenshot](https://i.imgur.com/acD5UbB.png)
+
+Profile updated
+
+![screenshot](https://i.imgur.com/0AhrH55.png)
+
+### Finishing Purchase
+First, try to purchase item without credit card
+
+![screenshot](https://i.imgur.com/y8bPuin.png)
+
+Error message
+
+
+![screenshot](https://i.imgur.com/g1Vj6Bd.png)
+
+Now finish purchase with a credit card
+
+![screenshot](https://i.imgur.com/ZKLhDVZ.png)
+
+Success message
+
+![screenshot](https://i.imgur.com/qCEyi1n.png)
+
+
+### Log in as an admin
+
+
+### Creates a new Product
+
+### Updates a Product
+
+
+### Removing a Product
+
+
+
+### Shape Drawer
+
+
+
+
+
 
 ## Problems
 

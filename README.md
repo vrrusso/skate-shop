@@ -198,7 +198,7 @@ Use your criativity and draw a pattern on shape drawer and then download the png
 In this section we will detail all the tests performed on the topics described presented in the Project Description section.
 
 ### Browsing the SPA
-
+The browsing SPA worked perfectly
 
 ### Filter products by type
 Filter by shapes
@@ -343,23 +343,82 @@ Success message
 
 
 ### Log in as an admin
+Admin creds
+
+![screenshot](https://i.imgur.com/FUZJKDs.png)
+
+Admin vision of the app
+
+![screenshot](https://i.imgur.com/YJuum4y.png)
 
 
 ### Creates a new Product
 
+Creadte product options
+
+
+![screenshot](https://i.imgur.com/S4w5DfA.png)
+
+Success message
+
+![screenshot](https://i.imgur.com/PJSwTeI.png)
+
+Shape created and indexed in the shape category
+
+
+![screenshot](https://i.imgur.com/u67p0uo.png)
+
+Shape details
+
+![screenshot](https://i.imgur.com/vCcqcrO.png)
+
 ### Updates a Product
+Product before update
+
+![screenshot](https://i.imgur.com/PJjF7Qq.png)
+
+Edit product page before change
+
+![screenshot](https://i.imgur.com/fl1TDlb.png)
+
+Edit product page after change
+
+![screenshot](https://i.imgur.com/Nf20M9w.png)
+
+Success message
+
+![screenshot](https://i.imgur.com/EaDGfJm.png)
+
+Product after update
+
+![screenshot](https://i.imgur.com/R28XNXZ.png)
 
 
 ### Removing a Product
 
+Wheels and bearings page before removal 
 
+![screenshot](https://i.imgur.com/QPNRWw3.png)
+
+Removal message
+
+![screenshot](https://i.imgur.com/ZsTPCBw.png)
+
+Wheels and bearings page after removal
+
+
+![screenshot](https://i.imgur.com/s61wYX9.png)
 
 ### Shape Drawer
 
+Shape Drawer page with a custom shape design
+
+![screenshot](https://i.imgur.com/bYCYvWg.png)
+
+Download alert to download the custom shape design
 
 
-
-
+![screenshot](https://i.imgur.com/77mXelG.png)
 
 ## Problems
 
